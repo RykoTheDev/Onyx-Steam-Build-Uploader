@@ -97,7 +97,7 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [node name="Create_Depot_Card" type="PanelContainer"]
-custom_minimum_size = Vector2(540, 45)
+custom_minimum_size = Vector2(546, 45)
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = -420.0
@@ -153,7 +153,7 @@ placeholder_text = "Enter Depot ID..."
 
 [node name="Depot_Path_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(272, 0)
+custom_minimum_size = Vector2(279, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"BrowseLineEdit"

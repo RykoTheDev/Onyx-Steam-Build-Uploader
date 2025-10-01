@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://blx65522f750r"]
+[gd_scene load_steps=12 format=3 uid="uid://blx65522f750r"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_efmwq"]
+[ext_resource type="Script" uid="uid://dgvskiac7qm1n" path="res://scenes/gui.gd" id="2_7yii4"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_ynd5l"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_b8iy7"]
 [ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="4_b8iy7"]
 [ext_resource type="Texture2D" uid="uid://djt4vd6to0p30" path="res://assets/icons/manage_users_icon.png" id="5_jqlde"]
 [ext_resource type="FontFile" uid="uid://bm34cwc0na70v" path="res://assets/fonts/Rubik-Medium.otf" id="6_08a8y"]
-[ext_resource type="PackedScene" uid="uid://di3116xkt3nww" path="res://scenes/popups/welcome_popup.tscn" id="7_7yii4"]
-[ext_resource type="PackedScene" uid="uid://dq8qmufp4tgjc" path="res://scenes/popups/setup_popup.tscn" id="8_4yt8u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
 bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
@@ -38,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_efmwq")
 theme_override_styles/panel = SubResource("StyleBoxFlat_efmwq")
+script = ExtResource("2_7yii4")
 
 [node name="Margins_Container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -138,7 +138,7 @@ text = "Have you set [b]ContentBuilder[/b] Directory?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="No_Apps_Set_Directory_Button2" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+[node name="No_Apps_Set_Directory_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -271,9 +271,6 @@ theme_override_fonts/font = ExtResource("4_b8iy7")
 theme_override_font_sizes/font_size = 8
 text = "SELECTED APP: 00"
 
-[node name="Welcome_Popup" parent="." instance=ExtResource("7_7yii4")]
-visible = false
-layout_mode = 2
-
-[node name="Setup_Popup" parent="." instance=ExtResource("8_4yt8u")]
-layout_mode = 2
+[node name="PopupsLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
