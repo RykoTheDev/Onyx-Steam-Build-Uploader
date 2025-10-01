@@ -1,0 +1,279 @@
+[gd_scene load_steps=13 format=3 uid="uid://blx65522f750r"]
+
+[ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_efmwq"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_ynd5l"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_b8iy7"]
+[ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="4_b8iy7"]
+[ext_resource type="Texture2D" uid="uid://djt4vd6to0p30" path="res://assets/icons/manage_users_icon.png" id="5_jqlde"]
+[ext_resource type="FontFile" uid="uid://bm34cwc0na70v" path="res://assets/fonts/Rubik-Medium.otf" id="6_08a8y"]
+[ext_resource type="PackedScene" uid="uid://di3116xkt3nww" path="res://scenes/popups/welcome_popup.tscn" id="7_7yii4"]
+[ext_resource type="PackedScene" uid="uid://dq8qmufp4tgjc" path="res://scenes/popups/setup_popup.tscn" id="8_4yt8u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66xuh"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Resource" id="Resource_jqlde"]
+script = ExtResource("3_b8iy7")
+
+[sub_resource type="Resource" id="Resource_08a8y"]
+script = ExtResource("3_b8iy7")
+
+[node name="GUI_Panel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_efmwq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_efmwq")
+
+[node name="Margins_Container" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Main_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_66xuh")
+
+[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/Main_Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton_Small"
+text = "REFRESH"
+
+[node name="Scroll_Container" type="ScrollContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("2_ynd5l")
+speed = 700.0
+wheel_scroll_damper = SubResource("Resource_jqlde")
+dragging_scroll_damper = SubResource("Resource_08a8y")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="Apps_List" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/Scroll_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="No_Apps_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_66xuh")
+
+[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="No_App_Found_Text" type="Label" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "No Apps Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No_App_Found_Text2" type="RichTextLabel" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/bold_font = ExtResource("4_b8iy7")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+bbcode_enabled = true
+text = "Have you set [b]ContentBuilder[/b] Directory?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No_Apps_Set_Directory_Button2" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_font_sizes/font_size = 15
+text = "SET DIRECTORY"
+
+[node name="No_Apps_Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton_Small"
+theme_override_font_sizes/font_size = 15
+text = "REFRESH"
+
+[node name="Horizontal_Bottom_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 45
+
+[node name="Horizontal_Users_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Manage_Users_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"IconButton"
+icon = ExtResource("5_jqlde")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="Current_User_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+theme_override_fonts/font = ExtResource("4_b8iy7")
+text = "Current User:"
+vertical_alignment = 1
+
+[node name="Current_User_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+theme_override_fonts/font = ExtResource("6_08a8y")
+theme_override_font_sizes/font_size = 12
+text = "No User Selected"
+vertical_alignment = 1
+
+[node name="Vertical_Title_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="App_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Vertical_Title_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 20
+text = "STEAM BUILD UPLOADER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creator_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Vertical_Title_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 9
+text = "by Silver Demon Studios"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_constants/separation = 9
+
+[node name="Setup_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton"
+text = "SETUP"
+
+[node name="Upload_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton"
+text = "UPLOAD"
+
+[node name="Selected_Apps_Counter_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container/Upload_Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -14.0
+offset_right = 37.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 8
+text = "SELECTED APP: 00"
+
+[node name="Welcome_Popup" parent="." instance=ExtResource("7_7yii4")]
+visible = false
+layout_mode = 2
+
+[node name="Setup_Popup" parent="." instance=ExtResource("8_4yt8u")]
+layout_mode = 2
