@@ -14,6 +14,10 @@ config/name="SteamBuildUploader"
 run/main_scene="uid://blx65522f750r"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+SceneManager="*res://autoloads/scene_manager.gd"
+
 [display]
 
 window/size/viewport_width=960

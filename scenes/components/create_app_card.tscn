@@ -1,0 +1,205 @@
+[gd_scene load_steps=21 format=3 uid="uid://bimhreecpfje6"]
+
+[ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_20jag"]
+[ext_resource type="Script" uid="uid://b2leybf1sjvjo" path="res://scenes/components/create_app_card.gd" id="2_aiggs"]
+[ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="3_mg1wl"]
+[ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="4_edy0b"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_d5ju2"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_8o65q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c566i"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pqk1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ldd8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ov40e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lg3hb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8rx5k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70bem"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rx5k"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70bem"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ldd8"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov40e"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.8862615, 0.8862615, 0.88626134, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg3hb"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="Resource" id="Resource_vujqa"]
+script = ExtResource("6_8o65q")
+
+[sub_resource type="Resource" id="Resource_c566i"]
+script = ExtResource("6_8o65q")
+
+[node name="Create_App_Card" type="PanelContainer"]
+custom_minimum_size = Vector2(546, 45)
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -414.0
+offset_bottom = 47.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("1_20jag")
+theme_override_styles/panel = SubResource("StyleBoxFlat_c566i")
+script = ExtResource("2_aiggs")
+
+[node name="Header_Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pqk1e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ldd8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ov40e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lg3hb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8rx5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_70bem")
+
+[node name="Margins_Container" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Horizontal_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="App_ID_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
+theme_override_fonts/font = ExtResource("3_mg1wl")
+theme_override_font_sizes/font_size = 12
+text = "    APP ID:"
+vertical_alignment = 1
+
+[node name="App_ID_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BrowseLineEdit"
+theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("4_edy0b")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rx5k")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_70bem")
+placeholder_text = "Your Game's App ID...."
+
+[node name="App_Depot_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ldd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ov40e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lg3hb")
+text = "CREATE  DEPOT"
+
+[node name="Scroll_Container" type="ScrollContainer" parent="Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("5_d5ju2")
+speed = 600.0
+wheel_scroll_damper = SubResource("Resource_vujqa")
+dragging_scroll_damper = SubResource("Resource_c566i")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="Depots_List_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Scroll_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Placeholder_Text" type="Label" parent="Margins_Container/Vertical_Container/Scroll_Container/Depots_List_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
+text = "No Depots Created, Click Add to Create One..."
+horizontal_alignment = 1
+vertical_alignment = 1

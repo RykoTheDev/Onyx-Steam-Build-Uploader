@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=35 format=3 uid="uid://bli1rm3cml04s"]
+[gd_resource type="Theme" load_steps=40 format=3 uid="uid://bli1rm3cml04s"]
 
 [ext_resource type="FontFile" uid="uid://cdyl48yccqq8t" path="res://assets/fonts/Rubik-BoldItalic.otf" id="1_kapja"]
 [ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="1_qae34"]
@@ -37,6 +37,57 @@ corner_radius_top_left = 9
 corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4w6o"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w64ks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1ljt"]
+bg_color = Color(0.8927102, 0.22313246, 0.21905243, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26mfi"]
+bg_color = Color(0.84313726, 0.19607843, 0.19607843, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy85e"]
+bg_color = Color(0.79615957, 0.17557755, 0.17800051, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kapja"]
 content_margin_left = 4.0
@@ -302,6 +353,29 @@ BrowseLineEdit/icons/clear = SubResource("DPITexture_kapja")
 BrowseLineEdit/styles/focus = SubResource("StyleBoxEmpty_ewxox")
 BrowseLineEdit/styles/normal = SubResource("StyleBoxFlat_cgj3v")
 BrowseLineEdit/styles/read_only = SubResource("StyleBoxFlat_7uhh3")
+DeleteButton/base_type = &"Button"
+DeleteButton/colors/font_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_disabled_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_focus_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_hover_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_outline_color = Color(0, 0, 0, 1)
+DeleteButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+DeleteButton/colors/icon_disabled_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/colors/icon_focus_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/colors/icon_hover_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/colors/icon_hover_pressed_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/colors/icon_normal_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/colors/icon_pressed_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+DeleteButton/constants/align_to_largest_stylebox = 0
+DeleteButton/constants/h_separation = 0
+DeleteButton/constants/icon_max_width = 0
+DeleteButton/constants/outline_size = 0
+DeleteButton/styles/disabled = SubResource("StyleBoxFlat_m4w6o")
+DeleteButton/styles/focus = SubResource("StyleBoxEmpty_w64ks")
+DeleteButton/styles/hover = SubResource("StyleBoxFlat_y1ljt")
+DeleteButton/styles/normal = SubResource("StyleBoxFlat_26mfi")
+DeleteButton/styles/pressed = SubResource("StyleBoxFlat_yy85e")
 IconButton/base_type = &"Button"
 IconButton/colors/font_color = Color(0, 0, 0, 1)
 IconButton/colors/font_disabled_color = Color(0, 0, 0, 1)

@@ -1,0 +1,195 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8s7jguruexqf"]
+
+[ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_nunr3"]
+[ext_resource type="Script" uid="uid://b3ow7xfwrnhmr" path="res://scenes/components/create_depot_card.gd" id="2_pqk1e"]
+[ext_resource type="Texture2D" uid="uid://44sp0a72r01i" path="res://assets/icons/browse_icon.png" id="3_pqk1e"]
+[ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="4_3ldd8"]
+[ext_resource type="Texture2D" uid="uid://we36gtcmff5w" path="res://assets/icons/delete_icon.png" id="4_ov40e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c566i"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pqk1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ldd8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ov40e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lg3hb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8rx5k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70bem"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rx5k"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70bem"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ldd8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov40e"]
+bg_color = Color(0.080783375, 0.08078333, 0.080783345, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg3hb"]
+bg_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="Create_Depot_Card" type="PanelContainer"]
+custom_minimum_size = Vector2(540, 45)
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -420.0
+offset_bottom = 55.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("1_nunr3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_c566i")
+script = ExtResource("2_pqk1e")
+
+[node name="Header_Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pqk1e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ldd8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ov40e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lg3hb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8rx5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_70bem")
+
+[node name="Margins_Container" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Horizontal_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="Depot_ID_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BrowseLineEdit"
+theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("4_3ldd8")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rx5k")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_70bem")
+placeholder_text = "Enter Depot ID..."
+
+[node name="Depot_Path_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BrowseLineEdit"
+theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("4_3ldd8")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rx5k")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_70bem")
+placeholder_text = "Browse Game's path.."
+
+[node name="Depot_Browse_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"IconButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ldd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ov40e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lg3hb")
+icon = ExtResource("3_pqk1e")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Delete_Depot_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DeleteButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ldd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ov40e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lg3hb")
+icon = ExtResource("4_ov40e")
+icon_alignment = 1
+expand_icon = true

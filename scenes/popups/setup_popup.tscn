@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://dq8qmufp4tgjc"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_qv14g"]
+[ext_resource type="Script" uid="uid://c6woh31q4pvti" path="res://scenes/popups/setup_popup.gd" id="2_c566i"]
 [ext_resource type="Texture2D" uid="uid://44sp0a72r01i" path="res://assets/icons/browse_icon.png" id="2_vcj50"]
-[ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="2_vujqa"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_c566i"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_lmdcg"]
 
@@ -56,6 +56,17 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c566i"]
+content_margin_left = 20.0
+content_margin_top = 7.0
+content_margin_right = 20.0
+content_margin_bottom = 7.0
+bg_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vujqa"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
 border_width_left = 1
@@ -67,18 +78,6 @@ corner_radius_top_left = 13
 corner_radius_top_right = 13
 corner_radius_bottom_right = 13
 corner_radius_bottom_left = 13
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c566i"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
 
 [sub_resource type="Resource" id="Resource_vujqa"]
 script = ExtResource("4_lmdcg")
@@ -94,6 +93,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qv14g")
+script = ExtResource("2_c566i")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -105,7 +105,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="Main_Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(600, 450)
+custom_minimum_size = Vector2(610, 450)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,78 +173,43 @@ expand_icon = true
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Add_Depots_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Add_Depots_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_font_sizes/font_size = 17
-text = "Add Depots"
+text = "Apps and Depots List"
 vertical_alignment = 1
 
+[node name="Create_App_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_c566i")
+text = "CREATE APP"
+
 [node name="Depots_Panel" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 240)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vujqa")
 
 [node name="Depots_Margins_Container" type="MarginContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel"]
-unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="App_Create_Depot_Card" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container"]
-custom_minimum_size = Vector2(0, 45)
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_c566i")
-
-[node name="Margins_Container" type="MarginContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Vertical_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="App_ID_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
-theme_override_fonts/font = ExtResource("2_vujqa")
-theme_override_font_sizes/font_size = 12
-text = "    APP ID:"
-vertical_alignment = 1
-
-[node name="App_ID_Text" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-theme_override_fonts/font = ExtResource("2_vujqa")
-theme_override_font_sizes/font_size = 22
-text = "1234567"
-vertical_alignment = 1
-
-[node name="App_Depot_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 35)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme_type_variation = &"PrimaryButton_Small"
-theme_override_font_sizes/font_size = 17
-text = "ADD"
-
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("3_c566i")
@@ -252,13 +217,12 @@ speed = 600.0
 wheel_scroll_damper = SubResource("Resource_vujqa")
 dragging_scroll_damper = SubResource("Resource_c566i")
 drag_with_mouse = false
-allow_horizontal_scroll = false
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/App_Create_Depot_Card/Margins_Container/Vertical_Container/SmoothScrollContainer"]
+[node name="Apps_List_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/Depots_Panel/Depots_Margins_Container/SmoothScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Vertical_Buttons_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
 layout_mode = 2
