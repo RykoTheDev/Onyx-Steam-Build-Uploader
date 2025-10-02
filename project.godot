@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 [autoload]
 
 SceneManager="*res://autoloads/scene_manager.gd"
+SettingManager="*res://autoloads/settings_manager.gd"
 
 [display]
 

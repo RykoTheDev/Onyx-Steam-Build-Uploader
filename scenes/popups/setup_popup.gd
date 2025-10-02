@@ -14,6 +14,15 @@ var file_dialog: FileDialog
 var feedback_tween: Tween
 
 func _ready() -> void:
+	SettingManager.load_settings()
+	var builder_path = SettingManager.get_setting("paths", "content_builder", "")
+	if builder_path != "":
+		content_builder_path_line_edit.text = builder_path
+		if _is_valid_content_builder_path(builder_path):
+			_add_depot_card(builder_path)
+	else:
+		print("Content builder not set yet.")
+	
 	# ===============================
 	# Error label (absolute positioned)
 	# ===============================
@@ -76,9 +85,12 @@ func _on_dir_selected(dir_path: String) -> void:
 		_hide_error()
 		_add_depot_card(dir_path)
 		_play_success_animation()
+		
+		SettingManager.set_setting("paths", "content_builder", dir_path)
 	else:
 		_show_error("Invalid ContentBuilder folder!")
 		_clear_depot_cards()
+
 
 func _is_valid_content_builder_path(dir_path: String) -> bool:
 	var required = ["content", "output", "scripts"]
@@ -120,9 +132,9 @@ func _spawn_app_card(app_id: String, dir_path: String, vdf_path: String) -> void
 	var delete_app_button: Button = card.get_node_or_null("%Delete_App_Button")
 	if delete_app_button:
 		delete_app_button.pressed.connect(_on_delete_app_button_pressed.bind(card))
-	var app_id_line_edit: LineEdit = card.get_node_or_null("%App_ID_LineEdit")
-	if app_id_line_edit:
-		app_id_line_edit.text = app_id
+	var app_id_spinbox: SpinBox = card.get_node_or_null("%App_ID_Spinbox")
+	if app_id_spinbox:
+		app_id_spinbox.value = int(app_id)
 	
 	var depots_container: VBoxContainer = card.get_node_or_null("%Depots_List_Container")
 	if not depots_container:
@@ -150,9 +162,9 @@ func _create_depot_card(depots_container: VBoxContainer, dir_path: String, depot
 		depot_card.set_meta("depot_id", depot_id)
 	depots_container.add_child(depot_card)
 	
-	var depot_id_line_edit: LineEdit = depot_card.get_node_or_null("%Depot_ID_LineEdit")
-	if depot_id_line_edit and depot_id != "":
-		depot_id_line_edit.text = depot_id
+	var depot_id_spinbox: SpinBox = depot_card.get_node_or_null("%Depot_ID_Spinbox")
+	if depot_id_spinbox and depot_id != "":
+		depot_id_spinbox.value = int(depot_id)
 	
 	if depot_id != "":
 		var depot_vdf_path = dir_path.path_join("scripts").path_join("depot_%s.vdf" % depot_id)
@@ -213,9 +225,9 @@ func _on_create_app_button_pressed() -> void:
 		if add_button:
 			add_button.pressed.connect(_on_add_depot_button_pressed.bind(depots_container, dir_path))
 		
-	var app_id_line_edit: LineEdit = card.get_node_or_null("%App_ID_LineEdit")
-	if app_id_line_edit:
-		app_id_line_edit.text = ""
+	var app_id_spinbox: SpinBox = card.get_node_or_null("%App_ID_LineEdit")
+	if app_id_spinbox:
+		app_id_spinbox.value = 0
 
 func _on_delete_app_button_pressed(app_card: Control) -> void:
 	var dir_path: String = app_card.get_meta("content_builder_path", "")
@@ -223,14 +235,15 @@ func _on_delete_app_button_pressed(app_card: Control) -> void:
 		app_card.queue_free()
 		return
 		
-	var app_id_line_edit: LineEdit = app_card.get_node_or_null("%App_ID_LineEdit")
-	if not app_id_line_edit:
+	var app_id_spinbox: SpinBox = app_card.get_node_or_null("%App_ID_Spinbox")
+	if not app_id_spinbox:
 		app_card.queue_free()
 		return
-	var app_id = app_id_line_edit.text.strip_edges()
-	if app_id == "":
+	var app_id = str(int(app_id_spinbox.value))
+	if app_id == "" or app_id == "0":
 		app_card.queue_free()
 		return
+
 		
 	var app_vdf_path = dir_path.path_join("scripts").path_join("app_%s.vdf" % app_id)
 	if FileAccess.file_exists(app_vdf_path):
@@ -242,9 +255,9 @@ func _on_delete_app_button_pressed(app_card: Control) -> void:
 	var depots_container: VBoxContainer = app_card.get_node_or_null("%Depots_List_Container")
 	if depots_container:
 		for depot_card in depots_container.get_children():
-			var depot_id_line_edit: LineEdit = depot_card.get_node_or_null("%Depot_ID_LineEdit")
-			if depot_id_line_edit and depot_id_line_edit.text.strip_edges() != "":
-				var depot_id = depot_id_line_edit.text.strip_edges()
+			var depot_id_spinbox: SpinBox = depot_card.get_node_or_null("%Depot_ID_Spinbox")
+			if depot_id_spinbox and int(depot_id_spinbox.value) != 0:
+				var depot_id = str(int(depot_id_spinbox.value))
 				var depot_vdf_path = dir_path.path_join("scripts").path_join("depot_%s.vdf" % depot_id)
 				if FileAccess.file_exists(depot_vdf_path):
 					if DirAccess.remove_absolute(depot_vdf_path) == OK:
@@ -253,17 +266,18 @@ func _on_delete_app_button_pressed(app_card: Control) -> void:
 	app_card.queue_free()
 
 func _on_generate_vdfs_pressed() -> void:
+	print("FR1")
 	var dir_path = content_builder_path_line_edit.text.strip_edges()
 	if not _is_valid_content_builder_path(dir_path):
 		_show_error("Invalid ContentBuilder folder!")
 		return
 
 	for app_card in app_list_container.get_children():
-		var app_id_line_edit: LineEdit = app_card.get_node_or_null("%App_ID_LineEdit")
-		if not app_id_line_edit:
+		var app_id_spinbox: SpinBox = app_card.get_node_or_null("%App_ID_Spinbox")
+		if not app_id_spinbox:
 			continue
-		var app_id = app_id_line_edit.text.strip_edges()
-		if app_id == "":
+		var app_id = str(int(app_id_spinbox.value))
+		if app_id == "" or app_id == "0":
 			continue
 		
 		# === DEPOTS for this app ===
@@ -271,12 +285,11 @@ func _on_generate_vdfs_pressed() -> void:
 		var depot_lines: Array[String] = []
 		if depots_container:
 			for depot_card in depots_container.get_children():
-				var depot_id_line_edit: LineEdit = depot_card.get_node_or_null("%Depot_ID_LineEdit")
 				var depot_path_line_edit: LineEdit = depot_card.get_node_or_null("%Depot_Path_LineEdit")
-				if not depot_id_line_edit or depot_id_line_edit.text.strip_edges() == "":
+				var depot_id_spinbox: SpinBox = depot_card.get_node_or_null("%Depot_ID_Spinbox")
+				if not depot_id_spinbox or int(depot_id_spinbox.value) == 0:
 					continue
-				
-				var depot_id = depot_id_line_edit.text.strip_edges()
+				var depot_id = str(int(depot_id_spinbox.value))
 				var depot_contentroot = depot_path_line_edit.text.strip_edges() if depot_path_line_edit else ""
 				
 				var depot_vdf_path = dir_path.path_join("scripts").path_join("depot_%s.vdf" % depot_id)
@@ -303,6 +316,7 @@ func _on_generate_vdfs_pressed() -> void:
 			"DEPOT_PATH": "",
 			"DEPOTS_BLOCK": depots_text
 		})
+		print("FR2")
 
 # ===============================
 # VDF Parsers

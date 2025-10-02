@@ -155,6 +155,7 @@ theme_type_variation = &"BrowseLineEdit"
 placeholder_text = "Type the path or browse to the folder location with the button on the right..."
 context_menu_enabled = false
 emoji_menu_enabled = false
+virtual_keyboard_type = 2
 caret_blink = true
 
 [node name="Content_Builder_Browse_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container/HorizontalContainer"]

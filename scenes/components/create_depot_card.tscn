@@ -138,18 +138,12 @@ mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 2
 
-[node name="Depot_ID_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
+[node name="Depot_ID_Spinbox" type="SpinBox" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"BrowseLineEdit"
-theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
-theme_override_fonts/font = ExtResource("4_3ldd8")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_8rx5k")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_70bem")
-placeholder_text = "Enter Depot ID..."
+max_value = 999999999.0
+prefix = "ID:"
 
 [node name="Depot_Path_LineEdit" type="LineEdit" parent="Margins_Container/Vertical_Container/Horizontal_Container"]
 unique_name_in_owner = true
