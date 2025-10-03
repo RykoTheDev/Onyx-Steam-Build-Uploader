@@ -18,6 +18,9 @@ extends PanelContainer
 
 func _ready() -> void:
 	_check_content_builder_path()
+	_update_current_user_display()
+	
+	SettingManager.selected_user_changed.connect(_on_selected_user_changed)
 
 	no_apps_set_directory_button.pressed.connect(_on_no_apps_set_directory_pressed)
 	setup_button.pressed.connect(_on_no_apps_set_directory_pressed)
@@ -27,6 +30,17 @@ func _ready() -> void:
 
 func _on_refresh_pressed() -> void:
 	_check_content_builder_path()
+	_update_current_user_display()
+
+func _update_current_user_display() -> void:
+	var selected_user = SettingManager.get_selected_user()
+	if selected_user != "":
+		current_user_text.text = selected_user
+	else:
+		current_user_text.text = "No User Selected"
+
+func _on_selected_user_changed(_username: String) -> void:
+	_update_current_user_display()
 
 # ===================================================
 # Popups
@@ -63,6 +77,7 @@ func _close_popup(popup_scene) -> void:
 	tween.finished.connect(func(): 
 		popup_scene.queue_free()
 		_check_content_builder_path()
+		_update_current_user_display()
 	)
 
 
@@ -94,7 +109,6 @@ func _is_valid_content_builder_path(dir_path: String) -> bool:
 # App Cards
 # ===================================================
 func _populate_apps(builder_path: String) -> void:
-	# Clear existing list
 	for child in apps_list.get_children():
 		child.queue_free()
 
@@ -152,7 +166,6 @@ func _parse_app_vdf_for_desc(vdf_path: String) -> String:
 		return ""
 	while not file.eof_reached():
 		var line = file.get_line().strip_edges()
-		# Look for: "desc" "something"
 		if line.begins_with("\"desc\""):
 			var tokens = line.split("\"", false)
 			if tokens.size() >= 3:

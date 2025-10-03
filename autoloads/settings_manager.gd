@@ -3,6 +3,8 @@ extends Node
 var config := ConfigFile.new()
 var config_path: String
 
+signal selected_user_changed(username: String)
+
 func _init() -> void:
 	var exe_path = OS.get_executable_path()
 	var exe_dir = exe_path.get_base_dir()
@@ -58,6 +60,7 @@ func set_selected_user(username: String) -> void:
 			val["is_selected"] = (key == username)
 			config.set_value("users", key, val)
 	save_settings()
+	selected_user_changed.emit(username)
 
 func clear_selected_user() -> void:
 	if not config.has_section("users"):
@@ -68,3 +71,14 @@ func clear_selected_user() -> void:
 			val["is_selected"] = false
 			config.set_value("users", key, val)
 	save_settings()
+	selected_user_changed.emit("")
+
+func get_selected_user() -> String:
+	if not config.has_section("users"):
+		return ""
+	for key in config.get_section_keys("users"):
+		var val = config.get_value("users", key, {})
+		if typeof(val) == TYPE_DICTIONARY:
+			if val.get("is_selected", false):
+				return val.get("username", "")
+	return ""
