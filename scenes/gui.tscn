@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_ynd5l"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_b8iy7"]
 [ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="4_b8iy7"]
-[ext_resource type="Texture2D" uid="uid://djt4vd6to0p30" path="res://assets/icons/manage_users_icon.png" id="5_jqlde"]
+[ext_resource type="Texture2D" uid="uid://djt4vd6to0p30" path="res://assets/icons/users_icon.png" id="5_jqlde"]
 [ext_resource type="FontFile" uid="uid://bm34cwc0na70v" path="res://assets/fonts/Rubik-Medium.otf" id="6_08a8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]

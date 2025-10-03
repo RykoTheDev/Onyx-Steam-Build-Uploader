@@ -6,8 +6,10 @@ var config_path: String
 func _init() -> void:
 	var exe_path = OS.get_executable_path()
 	var exe_dir = exe_path.get_base_dir()
-	if OS.has_feature("editor"): config_path = "user://settings.cfg"
-	else: config_path = exe_dir.path_join("settings.cfg")
+	if OS.has_feature("editor"): 
+		config_path = "user://settings.cfg"
+	else: 
+		config_path = exe_dir.path_join("settings.cfg")
 
 func load_settings() -> void:
 	var err = config.load(config_path)
@@ -26,4 +28,43 @@ func get_setting(section: String, key: String, default_value = null):
 
 func set_setting(section: String, key: String, value) -> void:
 	config.set_value(section, key, value)
+	save_settings()
+
+# --- User-specific helpers ---
+func save_user(username: String, password: String, is_selected: bool = false) -> void:
+	var user_data = {
+		"username": username,
+		"password": password,
+		"is_selected": is_selected
+	}
+	set_setting("users", username, user_data)
+
+func load_users() -> Dictionary:
+	if not config.has_section("users"):
+		return {}
+	var users := {}
+	for key in config.get_section_keys("users"):
+		var val = config.get_value("users", key, {})
+		if typeof(val) == TYPE_DICTIONARY:
+			users[key] = val
+	return users
+
+func set_selected_user(username: String) -> void:
+	if not config.has_section("users"):
+		return
+	for key in config.get_section_keys("users"):
+		var val = config.get_value("users", key, {})
+		if typeof(val) == TYPE_DICTIONARY:
+			val["is_selected"] = (key == username)
+			config.set_value("users", key, val)
+	save_settings()
+
+func clear_selected_user() -> void:
+	if not config.has_section("users"):
+		return
+	for key in config.get_section_keys("users"):
+		var val = config.get_value("users", key, {})
+		if typeof(val) == TYPE_DICTIONARY:
+			val["is_selected"] = false
+			config.set_value("users", key, val)
 	save_settings()

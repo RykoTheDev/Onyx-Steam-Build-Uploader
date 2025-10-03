@@ -1,0 +1,221 @@
+[gd_scene load_steps=13 format=3 uid="uid://77nhrjbreema"]
+
+[ext_resource type="Script" uid="uid://b5gsgi42hjfcn" path="res://scenes/components/steam_user_card.gd" id="1_6ypp8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fs548"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5se16"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgotp"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0rfg"]
+bg_color = Color(0.09239709, 0.09239706, 0.09239706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teewm"]
+bg_color = Color(0.12591091, 0.12591082, 0.12591082, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfak8"]
+bg_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mocu"]
+bg_color = Color(0.973535, 0.9735351, 0.973535, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gilce"]
+bg_color = Color(0.91664016, 0.9166398, 0.9166398, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us82p"]
+bg_color = Color(0.84313726, 0.19215687, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq3gy"]
+bg_color = Color(0.79136187, 0.17021462, 0.17277813, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h71cm"]
+bg_color = Color(0.79136187, 0.17021462, 0.17277813, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="Steam_User_Card" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 45)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fs548")
+script = ExtResource("1_6ypp8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Steam_Name_Field" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5se16")
+
+[node name="Steam_Username_Text" type="Label" parent="HBoxContainer/Steam_Name_Field"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
+theme_override_font_sizes/font_size = 12
+text = "STEAM USERNAME"
+
+[node name="Steam_Password_Field" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5se16")
+
+[node name="Steam_Password_Text" type="Label" parent="HBoxContainer/Steam_Password_Field"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
+theme_override_font_sizes/font_size = 12
+text = "STEAM PASSWORD"
+
+[node name="Select_User_Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton_Small"
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_fgotp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w0rfg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_teewm")
+text = "SELECT"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Selected_User_Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_pfak8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6mocu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gilce")
+text = "SELECT"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Remove_User_Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_pressed_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_disabled_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_colors/font_outline_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_us82p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mq3gy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h71cm")
+text = "REMOVE"
+icon_alignment = 1
+expand_icon = true

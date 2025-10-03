@@ -13,6 +13,8 @@ extends PanelContainer
 
 @onready var refresh_button: Button = %Refresh_Button
 
+@onready var manage_users_button: Button = %Manage_Users_Button
+@onready var current_user_text: Label = %Current_User_Text
 
 func _ready() -> void:
 	_check_content_builder_path()
@@ -20,6 +22,7 @@ func _ready() -> void:
 	no_apps_set_directory_button.pressed.connect(_on_no_apps_set_directory_pressed)
 	setup_button.pressed.connect(_on_no_apps_set_directory_pressed)
 	no_apps_refresh_button.pressed.connect(_check_content_builder_path)
+	manage_users_button.pressed.connect(_on_manage_users_pressed)
 	refresh_button.pressed.connect(_on_refresh_pressed)
 
 func _on_refresh_pressed() -> void:
@@ -31,6 +34,18 @@ func _on_refresh_pressed() -> void:
 
 func _on_no_apps_set_directory_pressed() -> void:
 	var popup_scene = SceneManager.SETUP_POPUP.instantiate()
+	popups_layer.add_child(popup_scene)
+	
+	popup_scene.scale = Vector2(0, 0)
+	var tween = popup_scene.create_tween()
+	tween.tween_property(popup_scene, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	
+	var close_button = popup_scene.get_node("%Close_Button")
+	if close_button:
+		close_button.pressed.connect(_close_popup.bind(popup_scene))
+
+func _on_manage_users_pressed() -> void:
+	var popup_scene = SceneManager.USERS_POPUP.instantiate()
 	popups_layer.add_child(popup_scene)
 	
 	popup_scene.scale = Vector2(0, 0)
