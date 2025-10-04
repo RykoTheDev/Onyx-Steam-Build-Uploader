@@ -106,7 +106,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="Main_Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(610, 450)
+custom_minimum_size = Vector2(700, 600)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -199,7 +199,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_c566i")
 text = "CREATE APP"
 
 [node name="Depots_Panel" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container"]
-custom_minimum_size = Vector2(0, 240)
+custom_minimum_size = Vector2(0, 344)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vujqa")
 

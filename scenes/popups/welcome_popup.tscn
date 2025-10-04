@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://di3116xkt3nww"]
+[gd_scene load_steps=16 format=3 uid="uid://di3116xkt3nww"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_imqx2"]
 [ext_resource type="Script" uid="uid://dep7kpeht4634" path="res://scenes/popups/welcome_popup.gd" id="2_e2mrb"]
@@ -38,6 +38,77 @@ script = ExtResource("4_e2mrb")
 [sub_resource type="Resource" id="Resource_yfbgo"]
 script = ExtResource("4_e2mrb")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobtl"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16djm"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.8862615, 0.8862615, 0.88626134, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efjnt"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2mrb"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4b8l"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.09239709, 0.09239706, 0.09239706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfbgo"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.12591091, 0.12591082, 0.12591082, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [node name="Welcome_Popup" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -58,7 +129,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="Main_Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(600, 450)
+custom_minimum_size = Vector2(700, 552)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,7 +154,6 @@ theme_override_constants/margin_bottom = 15
 [node name="Vertical_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container"]
 layout_mode = 2
 theme_override_constants/separation = 7
-alignment = 1
 
 [node name="Label" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container"]
 layout_mode = 2
@@ -96,7 +166,7 @@ vertical_alignment = 1
 
 [node name="Text_Container" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 288)
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_imqx2")
 
@@ -124,69 +194,100 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
+theme_override_colors/default_color = Color(0.8431842, 0.84318376, 0.84318376, 1)
 theme_override_fonts/bold_font = ExtResource("2_q3go3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
-theme_override_font_sizes/bold_italics_font_size = 12
-theme_override_font_sizes/italics_font_size = 12
-theme_override_font_sizes/mono_font_size = 12
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/bold_italics_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_font_sizes/mono_font_size = 13
 bbcode_enabled = true
-text = "Thank you for trying out this app that i built in my free time, just so i could save like 10-20 seconds of my life using Steam’s official GUI. it is based on that and that’s why it is free of charge. This is made enirely in Godot with GDScript.
+text = "[center][b][font_size=22] [color=#66ccff]STEAM BUILD UPLOADER[/color][/font_size][/b][/center]
 
-[b]Please read this before closing it:[/b]
-- When uploading, this software WILL become unresponsive so don't panic and don't force quit it. if you are on Windows Command Prompt with the progress will pop up.
+Built with love (and a bit of impatience) in Godot + GDScript.
+Thank you for trying out this app that I made in my free time...
+just so I could save about 10–20 seconds of my life using Steam’s official GUI.  
+It’s based on that, and that’s why it’s completely [b]free and open source[/b].
+----
+[b][color=#ffcc00]⚠️ Please Read Before Closing:[/color][/b]
 
-- In Linux, Terminal won't open when you upload, it will happen in background so if you have steam guard code. keep your steam app open on your phone and allow when the prompt appears. (depends on your network speed). When software becomes responsive again, this means process is complete and you can double check that in steamworks dashboard. (I can't find how to visually open terminal in linux, so if you know how to, please feel free to contribute on github)
+• When uploading, the software [b]WILL become unresponsive[/b] — don’t panic!  
+  On Windows, a Command Prompt will appear showing upload progress.  
+  Just let it do its thing.
 
-- When uploading multiple apps, on Windows CMD will close after uploading first one and then start a new CMD Instance with the other app and so on.. while in Linux, you just gotta wait till the software becomes responsive again :D
+• On Linux, the terminal won’t open visually. The upload runs in the background.  
+  If you have Steam Guard enabled, keep your Steam app open on your phone and approve the login.  
+  Once the software becomes responsive again, the upload is done. 
+  You can confirm it in your Steamworks dashboard.  
+  [font_size=11](If you know how to make a terminal open visually in Linux, please [b]contribute on GitHub[/b]! ❤️)[/font_size]
 
-[b]What you can do in this Software:[/b]
-	• 🚀 [b]Upload multiple apps at once[/b]
-	• 👥 [b]Manage multiple users[/b]
-	• 📄 [b]Generate VDFs[/b]
-	• 🎨 [b]Enjoy a cleaner UI[/b]
-	• 🔑 [b]Steam Guard using Steam's own CLI[/b]
+• When uploading [b]multiple apps[/b]:  
+  - On Windows, a new CMD window opens for each app sequentially.  
+  - On Linux, just wait and it’ll finish one by one in the background. 
+---
+[b][color=#99ff99]✨ What You Can Do Here:[/color][/b]
 
-[b]Changelog[/b]  
-This is the very first build... so nothing’s changed yet. :D
+• 🚀 [b]Upload multiple apps at once[/b]  
+• 👥 [b]Manage multiple Steam users[/b]  
+• 📄 [b]Generate VDF files automatically[/b]  
+• 🎨 [b]Enjoy a cleaner, minimal UI[/b]  
+• 🔑 [b]Handle Steam Guard via Steam’s official CLI[/b]
+---
+[b][color=#66aaff]📝 Changelog[/color][/b]  
+
+This is the [b]very first build[/b]... so nothing’s changed yet. :D
+
+[center][color=#888888]Thanks for testing — Feedbacks are welcome! 💙[/color][/center]
 "
 fit_content = true
 autowrap_mode = 2
 
-[node name="Watch_Tutorial_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="Watch_Tutorial_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme_type_variation = &"PrimaryButton_Small"
 theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_jobtl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_16djm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_efjnt")
 text = "WATCH TUTORIAL"
-
-[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
-layout_mode = 2
 
 [node name="Close_Dont_Show_Again_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_horizontal = 8
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton_Small"
-theme_override_font_sizes/font_size = 14
-text = "CLOSE & DON'T SHOW AGAIN"
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_e2mrb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4b8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yfbgo")
+text = "DON\"T SHOW AGAIN"
 
 [node name="Close_On_Update_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_horizontal = 8
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton_Small"
-theme_override_font_sizes/font_size = 14
-text = "CLOSE & SHOW ON NEW UPDATE ONLY"
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_e2mrb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4b8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yfbgo")
+text = "SHOW ON EVERY UPDATE"
 
 [node name="Close_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container"]
 unique_name_in_owner = true
@@ -197,4 +298,4 @@ size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton_Small"
 theme_override_font_sizes/font_size = 14
-text = "CLOSE & SHOW ON EVERY LAUNCH"
+text = "CLOSE"

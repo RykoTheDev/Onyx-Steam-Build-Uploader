@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.08235294, 0.08235294, 0.08235294, 1)
 boot_splash/show_image=false
 boot_splash/use_filter=false
+config/size/viewport_height=540
+config/size/viewport_width=960
 
 [autoload]
 
@@ -25,8 +27,8 @@ SettingManager="*res://autoloads/settings_manager.gd"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1200
+window/size/viewport_height=700
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
@@ -34,3 +36,12 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/quill-ide/plugin.cfg")
+
+[gui]
+
+common/snap_controls_to_pixels=false
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -19,6 +19,9 @@ extends PanelContainer
 @onready var upload_button: Button = %Upload_Button
 @onready var selected_apps_counter_text: Label = %Selected_Apps_Counter_Text
 
+@onready var donate_button: Button = %Donate_Button
+@onready var star_on_github_button: Button = %Star_on_Github_Button
+
 var selected_apps_count: int = 0
 var selected_apps_data: Array[Dictionary] = []
 
@@ -38,6 +41,9 @@ func _ready() -> void:
 	manage_users_button.pressed.connect(_on_manage_users_pressed)
 	refresh_button.pressed.connect(_on_refresh_pressed)
 	upload_button.pressed.connect(_on_upload_pressed)
+	
+	donate_button.pressed.connect(_on_donate_pressed)
+	star_on_github_button.pressed.connect(_on_star_pressed)
 
 func _on_refresh_pressed() -> void:
 	_check_content_builder_path()
@@ -360,3 +366,9 @@ func _parse_vdf_for_depots(vdf_path: String) -> Array:
 
 	file.close()
 	return depots
+
+func _on_donate_pressed() -> void:
+	OS.shell_open("https://patreon.com/SilverDemons")
+
+func _on_star_pressed() -> void:
+	OS.shell_open("https://github.com/rayzorite/SteamBuildUploader")

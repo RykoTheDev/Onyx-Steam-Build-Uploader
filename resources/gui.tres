@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=57 format=3 uid="uid://bli1rm3cml04s"]
+[gd_resource type="Theme" load_steps=58 format=3 uid="uid://bli1rm3cml04s"]
 
 [ext_resource type="FontFile" uid="uid://cdyl48yccqq8t" path="res://assets/fonts/Rubik-BoldItalic.otf" id="1_kapja"]
 [ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="1_qae34"]
@@ -413,6 +413,10 @@ corner_radius_bottom_left = 9
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgj3v"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdcnh"]
+bg_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+border_width_left = 1
+
 [resource]
 default_font = ExtResource("1_qae34")
 default_font_size = 15
@@ -671,3 +675,10 @@ SpinBox/styles/up_background_disabled = SubResource("StyleBoxEmpty_s401q")
 SpinBox/styles/up_background_hovered = SubResource("StyleBoxEmpty_abg66")
 SpinBox/styles/up_background_pressed = SubResource("StyleBoxEmpty_dg5qx")
 SpinBox/styles/up_down_buttons_separator = SubResource("StyleBoxEmpty_cgj3v")
+TooltipLabel/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
+TooltipLabel/constants/outline_size = 0
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_kdcnh")

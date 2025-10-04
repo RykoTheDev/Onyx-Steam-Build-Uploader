@@ -58,32 +58,32 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20jag"]
+bg_color = Color(0.84313726, 0.19215687, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aiggs"]
+bg_color = Color(0.7725116, 0.16320637, 0.16639742, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg1wl"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edy0b"]
-bg_color = Color(0.080783375, 0.08078333, 0.080783345, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5ju2"]
-bg_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+bg_color = Color(0.9173376, 0.23468849, 0.22793582, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -104,8 +104,8 @@ script = ExtResource("6_8o65q")
 custom_minimum_size = Vector2(546, 45)
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = -414.0
-offset_bottom = 47.0
+offset_right = -654.0
+offset_bottom = 58.0
 grow_horizontal = 2
 size_flags_vertical = 0
 mouse_filter = 1
@@ -177,9 +177,9 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_type_variation = &"DeleteButton"
-theme_override_styles/normal = SubResource("StyleBoxFlat_mg1wl")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_edy0b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_d5ju2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_20jag")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aiggs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mg1wl")
 icon = ExtResource("5_aiggs")
 icon_alignment = 1
 expand_icon = true

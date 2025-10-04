@@ -128,6 +128,8 @@ corner_radius_bottom_left = 7
 
 [node name="Steam_User_Card" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 45)
+offset_right = 646.0
+offset_bottom = 45.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fs548")
 script = ExtResource("1_6ypp8")
@@ -136,7 +138,7 @@ script = ExtResource("1_6ypp8")
 layout_mode = 2
 
 [node name="Steam_Name_Field" type="PanelContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(175, 45)
+custom_minimum_size = Vector2(217, 45)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -152,7 +154,7 @@ theme_override_font_sizes/font_size = 12
 text = "STEAM USERNAME"
 
 [node name="Steam_Password_Field" type="PanelContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(175, 45)
+custom_minimum_size = Vector2(217, 45)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4

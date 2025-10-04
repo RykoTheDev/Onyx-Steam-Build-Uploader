@@ -162,7 +162,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
 [node name="Main_Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(616, 450)
+custom_minimum_size = Vector2(700, 600)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -204,7 +204,7 @@ text = "Users"
 vertical_alignment = 1
 
 [node name="Users_Panel" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container"]
-custom_minimum_size = Vector2(0, 340)
+custom_minimum_size = Vector2(0, 488)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vujqa")
 
@@ -221,12 +221,11 @@ theme_override_constants/separation = 10
 
 [node name="Add_User_Field" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container/Users_Panel/Users_Margins_Container/Vertical_Container"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="Steam_Username_LineEdit" type="LineEdit" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container/Users_Panel/Users_Margins_Container/Vertical_Container/Add_User_Field"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 45)
+custom_minimum_size = Vector2(239, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -240,7 +239,7 @@ placeholder_text = "Type Steam Username..."
 
 [node name="Steam_Password_LineEdit" type="LineEdit" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container/Users_Panel/Users_Margins_Container/Vertical_Container/Add_User_Field"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 45)
+custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
