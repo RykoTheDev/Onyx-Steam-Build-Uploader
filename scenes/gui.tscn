@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://blx65522f750r"]
+[gd_scene load_steps=13 format=3 uid="uid://blx65522f750r"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_efmwq"]
 [ext_resource type="Script" uid="uid://dgvskiac7qm1n" path="res://scenes/gui.gd" id="2_7yii4"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="4_b8iy7"]
 [ext_resource type="Texture2D" uid="uid://djt4vd6to0p30" path="res://assets/icons/users_icon.png" id="5_jqlde"]
 [ext_resource type="FontFile" uid="uid://bm34cwc0na70v" path="res://assets/fonts/Rubik-Medium.otf" id="6_08a8y"]
+[ext_resource type="PackedScene" uid="uid://di3116xkt3nww" path="res://scenes/popups/welcome_popup.tscn" id="8_4yt8u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
 bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
@@ -203,33 +204,6 @@ theme_override_font_sizes/font_size = 12
 text = "No User Selected"
 vertical_alignment = 1
 
-[node name="Vertical_Title_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="App_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Vertical_Title_Container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_constants/line_spacing = -7
-theme_override_fonts/font = ExtResource("4_b8iy7")
-theme_override_font_sizes/font_size = 20
-text = "STEAM BUILD UPLOADER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Creator_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Vertical_Title_Container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_constants/line_spacing = -7
-theme_override_fonts/font = ExtResource("4_b8iy7")
-theme_override_font_sizes/font_size = 9
-text = "by Silver Demon Studios"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
 layout_mode = 2
 size_flags_horizontal = 10
@@ -254,6 +228,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_type_variation = &"PrimaryButton"
+disabled = true
 text = "UPLOAD"
 
 [node name="Selected_Apps_Counter_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container/Upload_Button"]
@@ -269,11 +244,52 @@ offset_top = -14.0
 offset_right = 37.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/font_color = Color(0.49747396, 0.4974736, 0.49747378, 1)
 theme_override_fonts/font = ExtResource("4_b8iy7")
 theme_override_font_sizes/font_size = 8
 text = "SELECTED APP: 00"
 
+[node name="AbsoluteLayer" type="CanvasLayer" parent="."]
+
+[node name="Vertical_Title_Container" type="VBoxContainer" parent="AbsoluteLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -75.0
+offset_right = -55.0
+offset_bottom = -24.999939
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="App_Title" type="Label" parent="AbsoluteLayer/Vertical_Title_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 20
+text = "STEAM BUILD UPLOADER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creator_Title" type="Label" parent="AbsoluteLayer/Vertical_Title_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 9
+text = "by Silver Demon Studios"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PopupsLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 2
+
+[node name="Welcome_Popup" parent="PopupsLayer" instance=ExtResource("8_4yt8u")]

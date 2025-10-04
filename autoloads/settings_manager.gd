@@ -13,6 +13,9 @@ func _init() -> void:
 	else: 
 		config_path = exe_dir.path_join("settings.cfg")
 
+func _ready() -> void:
+	load_settings()
+
 func load_settings() -> void:
 	var err = config.load(config_path)
 	if err != OK:
@@ -81,4 +84,14 @@ func get_selected_user() -> String:
 		if typeof(val) == TYPE_DICTIONARY:
 			if val.get("is_selected", false):
 				return val.get("username", "")
+	return ""
+
+func get_selected_user_password() -> String:
+	if not config.has_section("users"):
+		return ""
+	for key in config.get_section_keys("users"):
+		var val = config.get_value("users", key, {})
+		if typeof(val) == TYPE_DICTIONARY:
+			if val.get("is_selected", false):
+				return val.get("password", "")
 	return ""

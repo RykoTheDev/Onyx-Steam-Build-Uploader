@@ -6,8 +6,33 @@ class_name SetupPopup
 @onready var app_list_container: VBoxContainer = %Apps_List_Container
 @onready var generate_vdfs_button: Button = %Generate_VDFs_Button
 
-var app_vdf_template_path: String = "res://templates/app_template.md"
-var depot_vdf_template_path: String = "res://templates/depot_template.md"
+const APP_VDF_TEMPLATE = """\"appbuild\"
+{
+	\"appid\" \"{APP_ID}\"
+	\"desc\" \"Generated with SteamBuildUploader by Silver Demon Studios\"
+	\"buildoutput\" \"D:\\SteamSDK\\tools\\ContentBuilder\\output\"
+	\"contentroot\" \"\"
+	\"setlive\" \"\"
+	\"preview\" \"0\"
+	\"local\" \"\"
+	\"depots\"
+	{
+{DEPOTS_BLOCK}
+	}
+}"""
+
+const DEPOT_VDF_TEMPLATE = """\"DepotBuildConfig\"
+{
+	\"DepotID\" \"{DEPOT_ID}\"
+	\"contentroot\" \"{CONTENTROOT}\"
+	\"FileMapping\"
+	{
+		\"LocalPath\" \"*\"
+		\"DepotPath\" \".\"
+		\"recursive\" \"1\"
+	}
+	\"FileExclusion\" \"*.pdb\"
+}"""
 
 var error_label: Label
 var file_dialog: FileDialog
@@ -145,7 +170,9 @@ func _spawn_app_card(app_id: String, dir_path: String, vdf_path: String) -> void
 		add_button.pressed.connect(_on_add_depot_button_pressed.bind(depots_container, dir_path))
 	
 	for child in depots_container.get_children():
-		child.queue_free()
+		if child is Label:
+			child.queue_free()
+
 	depots_container.alignment = BoxContainer.ALIGNMENT_BEGIN
 	
 	for depot_id in _parse_vdf_for_depots(vdf_path):
@@ -293,12 +320,11 @@ func _on_generate_vdfs_pressed() -> void:
 				var depot_contentroot = depot_path_line_edit.text.strip_edges() if depot_path_line_edit else ""
 				
 				var depot_vdf_path = dir_path.path_join("scripts").path_join("depot_%s.vdf" % depot_id)
-				if not FileAccess.file_exists(depot_vdf_path):
-					_write_vdf_from_template(depot_vdf_template_path, depot_vdf_path, {
-						"DEPOT_ID": depot_id,
-						"APP_ID": app_id,
-						"CONTENTROOT": depot_contentroot
-					})
+				_write_vdf_from_template(DEPOT_VDF_TEMPLATE, depot_vdf_path, {
+					"DEPOT_ID": depot_id,
+					"APP_ID": app_id,
+					"CONTENTROOT": depot_contentroot
+				})
 			
 				var depot_vdf_relpath = dir_path.path_join("scripts").path_join("depot_%s.vdf" % depot_id)
 				depot_lines.append("\t\t\"%s\" \"%s\"" % [depot_id, depot_vdf_relpath])
@@ -310,7 +336,7 @@ func _on_generate_vdfs_pressed() -> void:
 			depots_text = "\t\t// No depots"
 		
 		var app_vdf_path = dir_path.path_join("scripts").path_join("app_%s.vdf" % app_id)
-		_write_vdf_from_template(app_vdf_template_path, app_vdf_path, {
+		_write_vdf_from_template(APP_VDF_TEMPLATE, app_vdf_path, {
 			"APP_ID": app_id,
 			"DEPOT_ID": "",
 			"DEPOT_PATH": "",
@@ -322,14 +348,8 @@ func _on_generate_vdfs_pressed() -> void:
 # VDF Parsers
 # ===============================
 
-func _write_vdf_from_template(template_path: String, target_path: String, replacements: Dictionary) -> void:
-	var template_file := FileAccess.open(template_path, FileAccess.READ)
-	if not template_file:
-		printerr("❌ Could not open template: ", template_path)
-		return
-	
-	var content = template_file.get_as_text()
-	template_file.close()
+func _write_vdf_from_template(template_content: String, target_path: String, replacements: Dictionary) -> void:
+	var content = template_content
 	
 	for key in replacements.keys():
 		content = content.replace("{%s}" % key, replacements[key])

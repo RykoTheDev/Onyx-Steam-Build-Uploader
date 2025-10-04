@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://di3116xkt3nww"]
+[gd_scene load_steps=10 format=3 uid="uid://di3116xkt3nww"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_imqx2"]
+[ext_resource type="Script" uid="uid://dep7kpeht4634" path="res://scenes/popups/welcome_popup.gd" id="2_e2mrb"]
 [ext_resource type="FontFile" uid="uid://brphacpph04i2" path="res://assets/fonts/Rubik-Bold.otf" id="2_q3go3"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_ystyf"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_e2mrb"]
@@ -45,6 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_imqx2")
+script = ExtResource("2_e2mrb")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -131,7 +133,14 @@ theme_override_font_sizes/mono_font_size = 12
 bbcode_enabled = true
 text = "Thank you for trying out this app that i built in my free time, just so i could save like 10-20 seconds of my life using Steam’s official GUI. it is based on that and that’s why it is free of charge. This is made enirely in Godot with GDScript.
 
-[b]What you can do here:[/b]
+[b]Please read this before closing it:[/b]
+- When uploading, this software WILL become unresponsive so don't panic and don't force quit it. if you are on Windows Command Prompt with the progress will pop up.
+
+- In Linux, Terminal won't open when you upload, it will happen in background so if you have steam guard code. keep your steam app open on your phone and allow when the prompt appears. (depends on your network speed). When software becomes responsive again, this means process is complete and you can double check that in steamworks dashboard. (I can't find how to visually open terminal in linux, so if you know how to, please feel free to contribute on github)
+
+- When uploading multiple apps, on Windows CMD will close after uploading first one and then start a new CMD Instance with the other app and so on.. while in Linux, you just gotta wait till the software becomes responsive again :D
+
+[b]What you can do in this Software:[/b]
 	• 🚀 [b]Upload multiple apps at once[/b]
 	• 👥 [b]Manage multiple users[/b]
 	• 📄 [b]Generate VDFs[/b]
@@ -178,3 +187,14 @@ mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton_Small"
 theme_override_font_sizes/font_size = 14
 text = "CLOSE & SHOW ON NEW UPDATE ONLY"
+
+[node name="Close_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton_Small"
+theme_override_font_sizes/font_size = 14
+text = "CLOSE & SHOW ON EVERY LAUNCH"

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=56 format=3 uid="uid://bli1rm3cml04s"]
+[gd_resource type="Theme" load_steps=57 format=3 uid="uid://bli1rm3cml04s"]
 
 [ext_resource type="FontFile" uid="uid://cdyl48yccqq8t" path="res://assets/fonts/Rubik-BoldItalic.otf" id="1_kapja"]
 [ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="1_qae34"]
@@ -194,6 +194,13 @@ corner_radius_bottom_left = 12
 [sub_resource type="DPITexture" id="DPITexture_2yt6q"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvpgl"]
+bg_color = Color(0.60933006, 0.6093301, 0.60933006, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2yt6q"]
 
@@ -534,7 +541,7 @@ PrimaryButton/constants/icon_max_width = 0
 PrimaryButton/constants/outline_size = 0
 PrimaryButton/font_sizes/font_size = 27
 PrimaryButton/fonts/font = ExtResource("1_kapja")
-PrimaryButton/styles/disabled = SubResource("StyleBoxFlat_kapja")
+PrimaryButton/styles/disabled = SubResource("StyleBoxFlat_tvpgl")
 PrimaryButton/styles/focus = SubResource("StyleBoxEmpty_2yt6q")
 PrimaryButton/styles/hover = SubResource("StyleBoxFlat_hhlla")
 PrimaryButton/styles/normal = SubResource("StyleBoxFlat_aspw7")
