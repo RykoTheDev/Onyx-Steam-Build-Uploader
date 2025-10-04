@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwm4l531twdft"]
+[gd_scene load_steps=23 format=3 uid="uid://dwm4l531twdft"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_ok2jc"]
 [ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="2_65ej8"]
 [ext_resource type="Script" uid="uid://bijije4w6boaw" path="res://scenes/popups/users_popup.gd" id="2_fs548"]
 [ext_resource type="Texture2D" uid="uid://ch6njnmcmcou" path="res://assets/icons/save_icon.png" id="3_ok2jc"]
+[ext_resource type="Script" uid="uid://d4aqgj6r2dig4" path="res://scenes/components/info_button.gd" id="3_xa6ab"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_d6dx0"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_sroy2"]
 
@@ -20,6 +21,27 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.09803922)
 shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5se16"]
+bg_color = Color(0.6706895, 0.6706895, 0.6706895, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgotp"]
+bg_color = Color(0.633757, 0.6337567, 0.63375676, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0rfg"]
+bg_color = Color(0.7204677, 0.7204674, 0.7204674, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vujqa"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
@@ -195,6 +217,7 @@ theme_override_constants/separation = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 8
 
 [node name="Add_Users_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container/HBoxContainer"]
 layout_mode = 2
@@ -202,6 +225,22 @@ theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_font_sizes/font_size = 17
 text = "Users"
 vertical_alignment = 1
+
+[node name="Info_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container/HBoxContainer"]
+custom_minimum_size = Vector2(11, 11)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Click to learn more..."
+mouse_default_cursor_shape = 2
+theme_type_variation = &"IconButton"
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_5se16")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fgotp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w0rfg")
+text = "i"
+script = ExtResource("3_xa6ab")
+link = "https://partner.steamgames.com/doc/sdk/uploading#automating_steampipe"
 
 [node name="Users_Panel" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Users_Container"]
 custom_minimum_size = Vector2(0, 488)

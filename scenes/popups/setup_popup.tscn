@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dq8qmufp4tgjc"]
+[gd_scene load_steps=18 format=3 uid="uid://dq8qmufp4tgjc"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_qv14g"]
 [ext_resource type="Script" uid="uid://c6woh31q4pvti" path="res://scenes/popups/setup_popup.gd" id="2_c566i"]
 [ext_resource type="Texture2D" uid="uid://44sp0a72r01i" path="res://assets/icons/browse_icon.png" id="2_vcj50"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_c566i"]
+[ext_resource type="Script" uid="uid://d4aqgj6r2dig4" path="res://scenes/components/info_button.gd" id="3_lmdcg"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_lmdcg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epgtg"]
@@ -19,6 +20,27 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.09803922)
 shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmdcg"]
+bg_color = Color(0.6706895, 0.6706895, 0.6706895, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6h2m"]
+bg_color = Color(0.633757, 0.6337567, 0.63375676, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0od2"]
+bg_color = Color(0.7204677, 0.7204674, 0.7204674, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcj50"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
@@ -136,12 +158,32 @@ theme_override_constants/separation = 15
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Content_Builder_Path_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Content_Builder_Path_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_font_sizes/font_size = 17
 text = "Content Builder Path"
 vertical_alignment = 1
+
+[node name="Info_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container/HBoxContainer"]
+custom_minimum_size = Vector2(11, 11)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Click to learn more..."
+mouse_default_cursor_shape = 2
+theme_type_variation = &"IconButton"
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_lmdcg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i6h2m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a0od2")
+text = "i"
+script = ExtResource("3_lmdcg")
+link = "https://partner.steamgames.com/doc/sdk/uploading#1"
 
 [node name="HorizontalContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Content_Builder_Container"]
 layout_mode = 2
@@ -179,12 +221,32 @@ theme_override_constants/separation = 5
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Add_Depots_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Add_Depots_Title" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_font_sizes/font_size = 17
 text = "Apps and Depots List"
 vertical_alignment = 1
+
+[node name="Info_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(11, 11)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Click to learn more..."
+mouse_default_cursor_shape = 2
+theme_type_variation = &"IconButton"
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_lmdcg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i6h2m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a0od2")
+text = "i"
+script = ExtResource("3_lmdcg")
+link = "https://partner.steamgames.com/doc/sdk/uploading#3"
 
 [node name="Create_App_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Vertical_Depots_Container/HBoxContainer"]
 unique_name_in_owner = true

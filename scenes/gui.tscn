@@ -245,7 +245,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="No_App_Found_Text2" type="RichTextLabel" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 48.02)
 layout_mode = 2
 theme_override_fonts/bold_font = ExtResource("4_b8iy7")
 theme_override_font_sizes/normal_font_size = 12
@@ -254,7 +254,8 @@ theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/mono_font_size = 12
 bbcode_enabled = true
-text = "Have you set [b]ContentBuilder[/b] Directory?"
+text = "Have you set [b]ContentBuilder[/b] Directory?
+or ther might not be any VDF files in the location, Create one!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -267,7 +268,7 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_type_variation = &"PrimaryButton_Small"
 theme_override_font_sizes/font_size = 15
-text = "SET DIRECTORY"
+text = "SETUP"
 
 [node name="No_Apps_Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
 unique_name_in_owner = true

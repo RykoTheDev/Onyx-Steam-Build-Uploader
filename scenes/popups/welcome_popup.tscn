@@ -208,6 +208,7 @@ Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
 just so I could save about 10–20 seconds of my life using Steam’s official GUI.  
 It’s based on that, and that’s why it’s completely [b]free and open source[/b].
+You’ll find info icons next to each section title. Clicking them will open the official Steamworks documentation for that topic. Keep in mind, it’s not part of this software, it’s just there to help you understand what each field means. I Will try to write the documentation if time allows.
 ---
 [b][color=#99ff99]✨ What You Can Do Here:[/color][/b]
 
