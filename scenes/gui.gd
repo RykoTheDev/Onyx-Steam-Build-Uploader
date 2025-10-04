@@ -22,16 +22,26 @@ extends PanelContainer
 @onready var donate_button: Button = %Donate_Button
 @onready var star_on_github_button: Button = %Star_on_Github_Button
 
+@onready var console_log_popup: Control = $PopupsLayer/Console_Log_Popup
+@onready var console_label: RichTextLabel = %Console_Log
+@onready var console_close_button: Button = %Console_Close_Button
+
 var selected_apps_count: int = 0
 var selected_apps_data: Array[Dictionary] = []
 
 var _current_upload_index: int = 0
 var _is_uploading: bool = false
+var _current_process_id: int = -1
+var _process_check_timer: Timer = null
+var _output_file_path: String = ""
+var _last_file_position: int = 0
 
 func _ready() -> void:
 	_check_content_builder_path()
 	_update_current_user_display()
 	_update_upload_button_state()
+	
+	console_log_popup.hide()
 	
 	SettingManager.selected_user_changed.connect(_on_selected_user_changed)
 
@@ -41,9 +51,13 @@ func _ready() -> void:
 	manage_users_button.pressed.connect(_on_manage_users_pressed)
 	refresh_button.pressed.connect(_on_refresh_pressed)
 	upload_button.pressed.connect(_on_upload_pressed)
-	
 	donate_button.pressed.connect(_on_donate_pressed)
 	star_on_github_button.pressed.connect(_on_star_pressed)
+	
+	_process_check_timer = Timer.new()
+	_process_check_timer.wait_time = 0.1
+	_process_check_timer.timeout.connect(_check_process_output)
+	add_child(_process_check_timer)
 
 func _on_refresh_pressed() -> void:
 	_check_content_builder_path()
@@ -53,66 +67,187 @@ func _on_upload_pressed() -> void:
 	if selected_apps_data.is_empty():
 		return
 	
+	console_log_popup.show()
+	
+	if _is_uploading:
+		_log_to_console("⚠️ Upload already in progress!")
+		return
+	
 	SettingManager.save_settings()
 	_current_upload_index = 0
+	_is_uploading = true
+	upload_button.disabled = true
+	_log_to_console("🚀 Starting upload process...")
 	_upload_next_app()
 
 func _upload_next_app() -> void:
 	if _current_upload_index >= selected_apps_data.size():
 		_is_uploading = false
-		print("✅ All uploads finished!")
+		upload_button.disabled = false
+		_log_to_console("✅ All uploads finished!")
+		_process_check_timer.stop()
+		_cleanup_output_file()
 		return
 
 	var app_data = selected_apps_data[_current_upload_index]
 	var vdf_path = app_data["vdf_path"]
 
-	print("Starting upload for app VDF:", vdf_path)
+	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	_log_to_console("📦 Starting upload for App ID: " + app_data["app_id"])
+	_log_to_console("VDF: " + vdf_path)
+	
 	_update_vdf_desc(vdf_path, app_data)
-	print("Updated VDF description for app.")
+	_log_to_console("✏️ Updated VDF description")
 
 	var builder_path = SettingManager.get_setting("paths", "content_builder", "")
+	
+	_output_file_path = "user://steamcmd_output_" + str(Time.get_ticks_msec()) + ".txt"
+	_last_file_position = 0
+	
 	var terminal_cmd: String
 	var args: Array = []
 
 	if OS.has_feature("windows"):
 		var steamcmd_exe = builder_path.path_join("builder").path_join("steamcmd.exe")
 		if not FileAccess.file_exists(steamcmd_exe):
-			printerr("SteamCMD not found:", steamcmd_exe)
+			_log_to_console("❌ SteamCMD not found: " + steamcmd_exe)
+			_current_upload_index += 1
+			_upload_next_app()
 			return
+		
 		terminal_cmd = "cmd.exe"
-		args = [
-			"/c",
-			"start", "\"\"",
-			"\"%s\"" % steamcmd_exe,
-			"+login", SettingManager.get_selected_user(),
+		var output_path = ProjectSettings.globalize_path(_output_file_path)
+		var full_command = "\"%s\" +login %s %s +run_app_build \"%s\" +quit > \"%s\" 2>&1" % [
+			steamcmd_exe,
+			SettingManager.get_selected_user(),
 			SettingManager.get_selected_user_password(),
-			"+run_app_build", vdf_path,
-		    "+quit"
+			vdf_path,
+			output_path
 		]
-		var exit_code = OS.execute(terminal_cmd, args, [], true, true)
-		if exit_code != 0:
-			printerr("❌ SteamCMD exited with code:", exit_code)
+		args = ["/c", full_command]
 
 	elif OS.has_feature("linux"):
 		var steamcmd_exe = builder_path.path_join("builder_linux").path_join("steamcmd.sh")
 		if not FileAccess.file_exists(steamcmd_exe):
-			printerr("SteamCMD not found:", steamcmd_exe)
+			_log_to_console("❌ SteamCMD not found: " + steamcmd_exe)
+			_current_upload_index += 1
+			_upload_next_app()
 			return
 
-		terminal_cmd = steamcmd_exe
+		terminal_cmd = "bash"
+		var output_path = ProjectSettings.globalize_path(_output_file_path)
 		args = [
-			"+login", SettingManager.get_selected_user(),
-			SettingManager.get_selected_user_password(),
-			"+run_app_build", vdf_path,
-			"+quit"
+			"-c",
+			"\"%s\" +login %s %s +run_app_build \"%s\" +quit > \"%s\" 2>&1" % [
+				steamcmd_exe,
+				SettingManager.get_selected_user(),
+				SettingManager.get_selected_user_password(),
+				vdf_path,
+				output_path
+			]
 		]
+	
+	console_close_button.text = "CANCEL UPLOAD"
+	if console_close_button.pressed.is_connected(_on_console_closed_pressed):
+		console_close_button.pressed.disconnect(_on_console_closed_pressed)
+	console_close_button.pressed.connect(_cancel_upload)
+	_log_to_console("🔄 Executing SteamCMD...")
+	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	
+	_current_process_id = OS.create_process(terminal_cmd, args)
+	
+	if _current_process_id == -1:
+		_log_to_console("❌ Failed to start SteamCMD process")
+		_current_upload_index += 1
+		_upload_next_app()
+	else:
+		_log_to_console("⏳ Process started (PID: " + str(_current_process_id) + ")")
+		_process_check_timer.start()
 
-		var exit_code = OS.execute(terminal_cmd, args, [], true, true)
-		if exit_code != 0:
-			printerr("❌ SteamCMD exited with code:", exit_code)
+func _cancel_upload() -> void:
+	if _current_process_id != -1:
+		_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+		_log_to_console("🛑 Cancelling upload...")
+		
+		OS.kill(_current_process_id)
+		_current_process_id = -1
+	
+	_process_check_timer.stop()
+	
+	_is_uploading = false
+	console_close_button.text = "CLOSE"
+	if console_close_button.pressed.is_connected(_cancel_upload):
+		console_close_button.pressed.disconnect(_cancel_upload)
+	console_close_button.pressed.connect(_on_console_closed_pressed)
+	
+	_cleanup_output_file()
+	
+	_log_to_console("❌ Upload cancelled by user")
+	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	
+	console_log_popup.hide()
 
-	_current_upload_index += 1
-	_upload_next_app()
+func _check_process_output() -> void:
+	if _current_process_id == -1:
+		return
+	
+	_read_output_file()
+	
+	if not OS.is_process_running(_current_process_id):
+		_process_check_timer.stop()
+		
+		await get_tree().create_timer(0.2).timeout
+		_read_output_file()
+		
+		_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+		_log_to_console("✅ Upload process completed!")
+		console_close_button.text = "CLOSE"
+		if console_close_button.pressed.is_connected(_cancel_upload):
+			console_close_button.pressed.disconnect(_cancel_upload)
+		console_close_button.pressed.connect(_on_console_closed_pressed)
+		_cleanup_output_file()
+		_current_process_id = -1
+		_current_upload_index += 1
+		
+		await get_tree().create_timer(0.3).timeout
+		_upload_next_app()
+
+func _read_output_file() -> void:
+	if _output_file_path == "":
+		return
+	
+	var file := FileAccess.open(_output_file_path, FileAccess.READ)
+	if not file:
+		return
+	
+	file.seek(_last_file_position)
+	
+	while not file.eof_reached():
+		var line = file.get_line()
+		if line != "":
+			_log_to_console_raw(line)
+	
+	_last_file_position = file.get_position()
+	file.close()
+
+func _cleanup_output_file() -> void:
+	if _output_file_path != "" and FileAccess.file_exists(_output_file_path):
+		DirAccess.remove_absolute(_output_file_path)
+		_output_file_path = ""
+
+func _log_to_console(message: String) -> void:
+	if console_label:
+		console_label.append_text("[color=#00ff00]" + message + "[/color]\n")
+		await get_tree().process_frame
+		console_label.scroll_to_line(console_label.get_line_count())
+	print(message)
+
+func _log_to_console_raw(message: String) -> void:
+	if console_label:
+		console_label.append_text(message + "\n")
+		await get_tree().process_frame
+		console_label.scroll_to_line(console_label.get_line_count())
+	print(message)
 
 func _update_vdf_desc(vdf_path: String, app_data: Dictionary) -> void:
 	var file := FileAccess.open(vdf_path, FileAccess.READ)
@@ -131,6 +266,8 @@ func _update_vdf_desc(vdf_path: String, app_data: Dictionary) -> void:
 	file.store_string("\n".join(lines))
 	file.close()
 
+func _on_console_closed_pressed() -> void:
+	console_log_popup.hide()
 
 func _update_current_user_display() -> void:
 	var selected_user = SettingManager.get_selected_user()
@@ -145,14 +282,13 @@ func _on_selected_user_changed(_username: String) -> void:
 
 func _update_upload_button_state() -> void:
 	var user_selected = SettingManager.get_selected_user() != ""
-	upload_button.disabled = (selected_apps_count == 0 or not user_selected)
+	upload_button.disabled = (selected_apps_count == 0 or not user_selected or _is_uploading)
 	selected_apps_counter_text.text = "APP(s) SELECTED: " + str(selected_apps_count)
 
 func _on_app_checkbox_toggled(is_checked: bool, app_id: String, vdf_path: String) -> void:
 	if is_checked:
 		selected_apps_count += 1
-		var initial_desc = ""  # default if not found
-		# Try to read from the card
+		var initial_desc = ""
 		for child in apps_list.get_children():
 			var id_text = child.get_node("%App_ID_Text")
 			var desc_line = child.get_node("%App_Description_LineEdit")
@@ -167,7 +303,6 @@ func _on_app_checkbox_toggled(is_checked: bool, app_id: String, vdf_path: String
 		})
 	else:
 		selected_apps_count -= 1
-		# Remove from selected apps
 		for i in range(selected_apps_data.size()):
 			if selected_apps_data[i].get("app_id") == app_id:
 				selected_apps_data.remove_at(i)
@@ -288,9 +423,7 @@ func _spawn_app_card(app_id: String, vdf_path: String) -> void:
 	var description := _parse_app_vdf_for_desc(vdf_path)
 	if description_line:
 		description_line.text = description
-		# Whenever the user edits the description, update selected_apps_data
 		description_line.text_changed.connect(func(new_text: String):
-			# Find the entry for this app_id and update its description
 			for i in range(selected_apps_data.size()):
 				if selected_apps_data[i]["app_id"] == app_id:
 					selected_apps_data[i]["desc"] = new_text

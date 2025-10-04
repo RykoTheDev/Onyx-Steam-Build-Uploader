@@ -208,22 +208,6 @@ Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
 just so I could save about 10–20 seconds of my life using Steam’s official GUI.  
 It’s based on that, and that’s why it’s completely [b]free and open source[/b].
-----
-[b][color=#ffcc00]⚠️ Please Read Before Closing:[/color][/b]
-
-• When uploading, the software [b]WILL become unresponsive[/b] — don’t panic!  
-  On Windows, a Command Prompt will appear showing upload progress.  
-  Just let it do its thing.
-
-• On Linux, the terminal won’t open visually. The upload runs in the background.  
-  If you have Steam Guard enabled, keep your Steam app open on your phone and approve the login.  
-  Once the software becomes responsive again, the upload is done. 
-  You can confirm it in your Steamworks dashboard.  
-  [font_size=11](If you know how to make a terminal open visually in Linux, please [b]contribute on GitHub[/b]! ❤️)[/font_size]
-
-• When uploading [b]multiple apps[/b]:  
-  - On Windows, a new CMD window opens for each app sequentially.  
-  - On Linux, just wait and it’ll finish one by one in the background. 
 ---
 [b][color=#99ff99]✨ What You Can Do Here:[/color][/b]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://blx65522f750r"]
+[gd_scene load_steps=21 format=3 uid="uid://blx65522f750r"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_efmwq"]
 [ext_resource type="Script" uid="uid://dgvskiac7qm1n" path="res://scenes/gui.gd" id="2_7yii4"]
@@ -71,6 +71,50 @@ script = ExtResource("3_b8iy7")
 
 [sub_resource type="Resource" id="Resource_08a8y"]
 script = ExtResource("3_b8iy7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epgtg"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.09803922)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imqx2"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="Resource" id="Resource_v4b8l"]
+script = ExtResource("3_b8iy7")
+
+[sub_resource type="Resource" id="Resource_yfbgo"]
+script = ExtResource("3_b8iy7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3be1"]
+bg_color = Color(0.19076231, 0.19076234, 0.19076225, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
 
 [node name="GUI_Panel" type="PanelContainer"]
 anchors_preset = 15
@@ -365,4 +409,112 @@ unique_name_in_owner = true
 layer = 2
 
 [node name="Welcome_Popup" parent="PopupsLayer" instance=ExtResource("8_4yt8u")]
-visible = false
+
+[node name="Console_Log_Popup" type="Control" parent="PopupsLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_efmwq")
+
+[node name="Background" type="ColorRect" parent="PopupsLayer/Console_Log_Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Main_Panel" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup"]
+custom_minimum_size = Vector2(700, 552)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -225.0
+offset_right = 225.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_epgtg")
+
+[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Vertical_Container" type="VBoxContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Label" type="Label" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+theme_override_fonts/font = ExtResource("4_b8iy7")
+theme_override_font_sizes/font_size = 25
+text = "CONSOLE OUTPUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text_Container" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 437)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_imqx2")
+
+[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Scroll_Container" type="ScrollContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("2_ynd5l")
+speed = 600.0
+wheel_scroll_damper = SubResource("Resource_v4b8l")
+dragging_scroll_damper = SubResource("Resource_yfbgo")
+drag_with_mouse = false
+allow_horizontal_scroll = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="Console_Log" type="RichTextLabel" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container/Scroll_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.8431842, 0.84318376, 0.84318376, 1)
+theme_override_fonts/bold_font = ExtResource("4_b8iy7")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/bold_italics_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_font_sizes/mono_font_size = 13
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+
+[node name="Console_Close_Button" type="Button" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SecondaryButton_Small"
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v3be1")
+text = "CLOSE"
