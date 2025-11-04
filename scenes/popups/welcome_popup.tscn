@@ -203,12 +203,14 @@ theme_override_font_sizes/italics_font_size = 13
 theme_override_font_sizes/mono_font_size = 13
 bbcode_enabled = true
 text = "[center][b][font_size=22] [color=#66ccff]STEAM BUILD UPLOADER[/color][/font_size][/b][/center]
+[center][font_size=12] [color=#727272]v0.1 Beta[/color][/font_size][/center]
 
 Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
 just so I could save about 10–20 seconds of my life using Steam’s official GUI.  
 It’s based on that, and that’s why it’s completely [b]free and open source[/b].
-You’ll find info icons next to some of the important section titles. Clicking them will open the official Steamworks documentation for that topic. Keep in mind, it’s not part of this software, it’s just there to help you understand what each field means.
+You’ll find info icons next to some of the important section titles. Clicking them will open the official Steamworks documentation for that topic. Keep in mind, it’s not part of this software, it’s just there to help you understand what each field means
+Your data will be saved locally in a cfg file beside wherever you have this app located in your filesystem.
 ---
 [b][color=#99ff99]✨ What You Can Do Here:[/color][/b]
 

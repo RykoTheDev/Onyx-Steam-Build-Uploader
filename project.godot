@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="SteamBuildUploader"
-config/version="1.0"
+config/version="0.1 Beta"
 config/tags=PackedStringArray("tool")
 run/main_scene="uid://blx65522f750r"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.08235294, 0.08235294, 0.08235294, 1)
 boot_splash/show_image=false
 boot_splash/use_filter=false
+config/icon="uid://dqueuqrrxtplk"
 config/size/viewport_height=540
 config/size/viewport_width=960
 

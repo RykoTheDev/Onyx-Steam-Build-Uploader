@@ -22,6 +22,7 @@ extends PanelContainer
 @onready var donate_button: Button = %Donate_Button
 @onready var star_on_github_button: Button = %Star_on_Github_Button
 
+@onready var console_scroll_container: SmoothScrollContainer = %Console_Scroll_Container
 @onready var console_log_popup: Control = $PopupsLayer/Console_Log_Popup
 @onready var console_label: RichTextLabel = %Console_Log
 @onready var console_close_button: Button = %Console_Close_Button
@@ -36,7 +37,7 @@ var _process_check_timer: Timer = null
 var _output_file_path: String = ""
 var _last_file_position: int = 0
 
-var _steam_guard_timeout: float = 5
+var _steam_guard_timeout: float = 5.0
 var _time_since_last_output: float = 0.0
 var _steam_guard_prompted: bool = false
 var _last_output_time: float = 0.0
@@ -97,7 +98,6 @@ func _upload_next_app() -> void:
 	var app_data = selected_apps_data[_current_upload_index]
 	var vdf_path = app_data["vdf_path"]
 
-	# Reset Steam Guard detection for new upload
 	_steam_guard_prompted = false
 	_last_output_time = Time.get_ticks_msec() / 1000.0
 	_time_since_last_output = 0.0
@@ -191,10 +191,12 @@ func _cancel_upload() -> void:
 	console_close_button.pressed.connect(_on_console_closed_pressed)
 	
 	_cleanup_output_file()
+	
 	_log_to_console("❌ Upload cancelled by user")
 	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	upload_button.disabled = false
+	
 	console_label.clear()
+	upload_button.disabled = false
 	console_log_popup.hide()
 
 func _check_process_output() -> void:
@@ -253,13 +255,20 @@ func _read_output_file() -> bool:
 	while not file.eof_reached():
 		var line = file.get_line()
 		if line != "":
-			_log_to_console_raw(line)
-			had_output = true
+			line = _strip_ansi_codes(line)
+			if line.strip_edges() != "":
+				_log_to_console_raw(line)
+				had_output = true
 	
 	_last_file_position = file.get_position()
 	file.close()
 	
 	return had_output
+
+func _strip_ansi_codes(text: String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\x1b\\[[0-9;]*[a-zA-Z]")
+	return regex.sub(text, "", true)
 
 func _cleanup_output_file() -> void:
 	if _output_file_path != "" and FileAccess.file_exists(_output_file_path):
@@ -270,15 +279,19 @@ func _log_to_console(message: String) -> void:
 	if console_label:
 		console_label.append_text(message + "\n")
 		await get_tree().process_frame
-		console_label.scroll_to_line(console_label.get_line_count())
+		_auto_scroll_console()
 	print(message)
 
 func _log_to_console_raw(message: String) -> void:
 	if console_label:
 		console_label.append_text(message + "\n")
 		await get_tree().process_frame
-		console_label.scroll_to_line(console_label.get_line_count())
+		_auto_scroll_console()
 	print(message)
+
+func _auto_scroll_console() -> void:
+	if console_scroll_container:
+		console_scroll_container.scroll_vertical = int(console_scroll_container.get_v_scroll_bar().max_value)
 
 func _update_vdf_desc(vdf_path: String, app_data: Dictionary) -> void:
 	var file := FileAccess.open(vdf_path, FileAccess.READ)
@@ -395,6 +408,9 @@ func _check_content_builder_path() -> void:
 	else:
 		no_apps_panel.visible = true
 		main_panel.visible = false
+		selected_apps_count = 0
+		selected_apps_data.clear()
+		_update_upload_button_state()
 
 
 func _is_valid_content_builder_path(dir_path: String) -> bool:
@@ -409,19 +425,24 @@ func _is_valid_content_builder_path(dir_path: String) -> bool:
 # App Cards
 # ===================================================
 func _populate_apps(builder_path: String) -> void:
+	var previously_selected_apps: Dictionary = {}
+	for app_data in selected_apps_data:
+		previously_selected_apps[app_data["app_id"]] = app_data["desc"]
+	
 	selected_apps_count = 0
 	selected_apps_data.clear()
-	_update_upload_button_state()
 	
 	for child in apps_list.get_children():
 		child.queue_free()
 
 	var scripts_path = builder_path.path_join("scripts")
 	if not DirAccess.dir_exists_absolute(scripts_path):
+		_update_upload_button_state()
 		return
 
 	var dir := DirAccess.open(scripts_path)
 	if not dir:
+		_update_upload_button_state()
 		return
 
 	dir.list_dir_begin()
@@ -432,12 +453,14 @@ func _populate_apps(builder_path: String) -> void:
 			if parts.size() > 1:
 				var app_id_str = parts[1].get_basename()
 				if app_id_str.is_valid_int():
-					_spawn_app_card(app_id_str, scripts_path.path_join(file_name))
+					_spawn_app_card(app_id_str, scripts_path.path_join(file_name), previously_selected_apps)
 		file_name = dir.get_next()
 	dir.list_dir_end()
+	
+	_update_upload_button_state()
 
 
-func _spawn_app_card(app_id: String, vdf_path: String) -> void:
+func _spawn_app_card(app_id: String, vdf_path: String, previously_selected: Dictionary = {}) -> void:
 	var card = SceneManager.APP_CARD.instantiate()
 	apps_list.add_child(card)
 
@@ -468,6 +491,17 @@ func _spawn_app_card(app_id: String, vdf_path: String) -> void:
 	
 	# === Checkbox ===
 	if checkbox:
+		if previously_selected.has(app_id):
+			checkbox.set_checked(true)
+			selected_apps_count += 1
+			selected_apps_data.append({
+				"app_id": app_id,
+				"vdf_path": vdf_path,
+				"desc": previously_selected[app_id]
+			})
+			if description_line:
+				description_line.text = previously_selected[app_id]
+		
 		checkbox.pressed.connect(func(): _on_app_checkbox_toggled(checkbox.is_checked(), app_id, vdf_path))
 
 
