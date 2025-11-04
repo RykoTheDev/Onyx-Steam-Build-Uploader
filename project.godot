@@ -12,6 +12,7 @@ config_version=5
 
 config/name="SteamBuildUploader"
 config/version="1.0"
+config/tags=PackedStringArray("tool")
 run/main_scene="uid://blx65522f750r"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.08235294, 0.08235294, 0.08235294, 1)

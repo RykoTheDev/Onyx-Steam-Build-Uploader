@@ -208,7 +208,7 @@ Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
 just so I could save about 10–20 seconds of my life using Steam’s official GUI.  
 It’s based on that, and that’s why it’s completely [b]free and open source[/b].
-You’ll find info icons next to each section title. Clicking them will open the official Steamworks documentation for that topic. Keep in mind, it’s not part of this software, it’s just there to help you understand what each field means. I Will try to write the documentation if time allows.
+You’ll find info icons next to some of the important section titles. Clicking them will open the official Steamworks documentation for that topic. Keep in mind, it’s not part of this software, it’s just there to help you understand what each field means.
 ---
 [b][color=#99ff99]✨ What You Can Do Here:[/color][/b]
 
@@ -231,7 +231,21 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="Watch_Tutorial_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+[node name="Watch_Showcase_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton_Small"
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_jobtl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_16djm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_efjnt")
+text = "SHOWCASE VIDEO"
+
+[node name="See_Doc_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -243,7 +257,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_jobtl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_16djm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_efjnt")
-text = "WATCH TUTORIAL"
+text = "DOCUMENTATION"
 
 [node name="Close_Dont_Show_Again_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
 unique_name_in_owner = true

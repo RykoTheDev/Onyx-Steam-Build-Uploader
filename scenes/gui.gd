@@ -36,6 +36,11 @@ var _process_check_timer: Timer = null
 var _output_file_path: String = ""
 var _last_file_position: int = 0
 
+var _steam_guard_timeout: float = 5
+var _time_since_last_output: float = 0.0
+var _steam_guard_prompted: bool = false
+var _last_output_time: float = 0.0
+
 func _ready() -> void:
 	_check_content_builder_path()
 	_update_current_user_display()
@@ -91,6 +96,11 @@ func _upload_next_app() -> void:
 
 	var app_data = selected_apps_data[_current_upload_index]
 	var vdf_path = app_data["vdf_path"]
+
+	# Reset Steam Guard detection for new upload
+	_steam_guard_prompted = false
+	_last_output_time = Time.get_ticks_msec() / 1000.0
+	_time_since_last_output = 0.0
 
 	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	_log_to_console("📦 Starting upload for App ID: " + app_data["app_id"])
@@ -181,17 +191,34 @@ func _cancel_upload() -> void:
 	console_close_button.pressed.connect(_on_console_closed_pressed)
 	
 	_cleanup_output_file()
-	
 	_log_to_console("❌ Upload cancelled by user")
 	_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	
+	upload_button.disabled = false
+	console_label.clear()
 	console_log_popup.hide()
 
 func _check_process_output() -> void:
 	if _current_process_id == -1:
 		return
 	
-	_read_output_file()
+	var had_new_output = _read_output_file()
+	
+	var current_time = Time.get_ticks_msec() / 1000.0
+	if had_new_output:
+		_last_output_time = current_time
+		_time_since_last_output = 0.0
+	else:
+		_time_since_last_output = current_time - _last_output_time
+	
+	if not _steam_guard_prompted and _time_since_last_output >= _steam_guard_timeout:
+		if OS.is_process_running(_current_process_id):
+			_steam_guard_prompted = true
+			_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+			_log_to_console("[color=#ffff00]⚠️ WAITING FOR INPUT[/color]")
+			_log_to_console("[color=#ffff00]SteamCMD may be waiting for your Steam Guard code.[/color]")
+			_log_to_console("[color=#ffff00]Please check your email or mobile authenticator,[/color]")
+			_log_to_console("[color=#ffff00]then enter the code in the SteamCMD window.[/color]")
+			_log_to_console("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	
 	if not OS.is_process_running(_current_process_id):
 		_process_check_timer.stop()
@@ -212,23 +239,27 @@ func _check_process_output() -> void:
 		await get_tree().create_timer(0.3).timeout
 		_upload_next_app()
 
-func _read_output_file() -> void:
+func _read_output_file() -> bool:
 	if _output_file_path == "":
-		return
+		return false
 	
 	var file := FileAccess.open(_output_file_path, FileAccess.READ)
 	if not file:
-		return
+		return false
 	
 	file.seek(_last_file_position)
 	
+	var had_output = false
 	while not file.eof_reached():
 		var line = file.get_line()
 		if line != "":
 			_log_to_console_raw(line)
+			had_output = true
 	
 	_last_file_position = file.get_position()
 	file.close()
+	
+	return had_output
 
 func _cleanup_output_file() -> void:
 	if _output_file_path != "" and FileAccess.file_exists(_output_file_path):
@@ -237,7 +268,7 @@ func _cleanup_output_file() -> void:
 
 func _log_to_console(message: String) -> void:
 	if console_label:
-		console_label.append_text("[color=#00ff00]" + message + "[/color]\n")
+		console_label.append_text(message + "\n")
 		await get_tree().process_frame
 		console_label.scroll_to_line(console_label.get_line_count())
 	print(message)
