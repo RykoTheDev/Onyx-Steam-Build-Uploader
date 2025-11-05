@@ -398,7 +398,6 @@ unique_name_in_owner = true
 layer = 2
 
 [node name="Welcome_Popup" parent="PopupsLayer" instance=ExtResource("8_4yt8u")]
-visible = false
 
 [node name="Console_Log_Popup" type="Control" parent="PopupsLayer"]
 unique_name_in_owner = true
