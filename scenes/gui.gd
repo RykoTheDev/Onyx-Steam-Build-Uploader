@@ -387,7 +387,7 @@ func _on_manage_users_pressed() -> void:
 func _close_popup(popup_scene) -> void:
 	var tween = create_tween()
 	tween.tween_property(popup_scene, "scale", Vector2(0, 0), 0.15).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.finished.connect(func(): 
+	tween.finished.connect(func():
 		popup_scene.queue_free()
 		_check_content_builder_path()
 		_update_current_user_display()
@@ -475,9 +475,11 @@ func _spawn_app_card(app_id: String, vdf_path: String, previously_selected: Dict
 
 	# === Description ===
 	var description := _parse_app_vdf_for_desc(vdf_path)
+	description = SettingManager.get_app_description(app_id, description)
 	if description_line:
 		description_line.text = description
 		description_line.text_changed.connect(func(new_text: String):
+			SettingManager.save_app_description(app_id, new_text)
 			for i in range(selected_apps_data.size()):
 				if selected_apps_data[i]["app_id"] == app_id:
 					selected_apps_data[i]["desc"] = new_text

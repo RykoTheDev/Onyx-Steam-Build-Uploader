@@ -8,9 +8,9 @@ signal selected_user_changed(username: String)
 func _init() -> void:
 	var exe_path = OS.get_executable_path()
 	var exe_dir = exe_path.get_base_dir()
-	if OS.has_feature("editor"): 
+	if OS.has_feature("editor"):
 		config_path = "user://settings.cfg"
-	else: 
+	else:
 		config_path = exe_dir.path_join("settings.cfg")
 
 func _ready() -> void:
@@ -95,3 +95,13 @@ func get_selected_user_password() -> String:
 			if val.get("is_selected", false):
 				return val.get("password", "")
 	return ""
+
+# --- App description helpers ---
+func save_app_description(app_id: String, description: String) -> void:
+	set_setting("app_descriptions", app_id, description)
+
+func get_app_description(app_id: String, default_value: String = "") -> String:
+	var value = get_setting("app_descriptions", app_id, default_value)
+	if typeof(value) == TYPE_STRING:
+		return value
+	return default_value

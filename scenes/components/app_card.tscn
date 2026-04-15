@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu3jemytrsxj8"]
+[gd_scene format=3 uid="uid://cu3jemytrsxj8"]
 
 [ext_resource type="Script" uid="uid://cwpw6ioihkf6a" path="res://scenes/components/custom_checkbox.gd" id="1_u2hl0"]
 [ext_resource type="Texture2D" uid="uid://t5sd63p5vdy8" path="res://assets/icons/check_icon.png" id="2_yf0qk"]
@@ -53,24 +53,24 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="App_Card" type="PanelContainer"]
+[node name="App_Card" type="PanelContainer" unique_id=1733794208]
 custom_minimum_size = Vector2(0, 60)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_7yii4")
 
-[node name="Margins_Container" type="MarginContainer" parent="."]
+[node name="Margins_Container" type="MarginContainer" parent="." unique_id=1725070874]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Horizontal_Container" type="HBoxContainer" parent="Margins_Container"]
+[node name="Horizontal_Container" type="HBoxContainer" parent="Margins_Container" unique_id=25499413]
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="CheckBox" type="Button" parent="Margins_Container/Horizontal_Container"]
+[node name="CheckBox" type="Button" parent="Margins_Container/Horizontal_Container" unique_id=217313282]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
@@ -81,7 +81,7 @@ mouse_default_cursor_shape = 2
 theme_type_variation = &"Checkbox"
 script = ExtResource("1_u2hl0")
 
-[node name="Icon" type="TextureRect" parent="Margins_Container/Horizontal_Container/CheckBox"]
+[node name="Icon" type="TextureRect" parent="Margins_Container/Horizontal_Container/CheckBox" unique_id=1035120587]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
 anchors_preset = 15
@@ -93,13 +93,13 @@ pivot_offset = Vector2(10, 10)
 texture = ExtResource("2_yf0qk")
 expand_mode = 1
 
-[node name="App_ID_Container" type="VBoxContainer" parent="Margins_Container/Horizontal_Container"]
+[node name="App_ID_Container" type="VBoxContainer" parent="Margins_Container/Horizontal_Container" unique_id=22638575]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 theme_override_constants/separation = -3
 alignment = 1
 
-[node name="Label" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container"]
+[node name="Label" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=1892220611]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
@@ -110,7 +110,7 @@ text = "APP ID"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="App_ID_Text" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container"]
+[node name="App_ID_Text" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=1332876195]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -122,7 +122,7 @@ text = "12345678"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="App_Description_LineEdit" type="LineEdit" parent="Margins_Container/Horizontal_Container"]
+[node name="App_Description_LineEdit" type="LineEdit" parent="Margins_Container/Horizontal_Container" unique_id=1120629187]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 45)
 layout_mode = 2
@@ -136,7 +136,7 @@ emoji_menu_enabled = false
 virtual_keyboard_type = 2
 caret_blink = true
 
-[node name="Depots_Button" type="Button" parent="Margins_Container/Horizontal_Container"]
+[node name="Depots_Button" type="Button" parent="Margins_Container/Horizontal_Container" unique_id=191627845]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(105, 50)
 layout_mode = 2

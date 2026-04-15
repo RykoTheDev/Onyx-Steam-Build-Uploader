@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://di3116xkt3nww"]
+[gd_scene format=3 uid="uid://di3116xkt3nww"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_imqx2"]
 [ext_resource type="Script" uid="uid://dep7kpeht4634" path="res://scenes/popups/welcome_popup.gd" id="2_e2mrb"]
@@ -109,7 +109,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="Welcome_Popup" type="Control"]
+[node name="Welcome_Popup" type="Control" unique_id=592072776]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +119,7 @@ grow_vertical = 2
 theme = ExtResource("1_imqx2")
 script = ExtResource("2_e2mrb")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1203283075]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +128,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="Main_Panel" type="PanelContainer" parent="."]
+[node name="Main_Panel" type="PanelContainer" parent="." unique_id=1108137533]
 custom_minimum_size = Vector2(700, 552)
 layout_mode = 1
 anchors_preset = 8
@@ -144,18 +144,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_epgtg")
 
-[node name="Margins_Container" type="MarginContainer" parent="Main_Panel"]
+[node name="Margins_Container" type="MarginContainer" parent="Main_Panel" unique_id=955422469]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Vertical_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="Main_Panel/Margins_Container" unique_id=539168169]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="Label" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Label" type="Label" parent="Main_Panel/Margins_Container/Vertical_Container" unique_id=111965139]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_fonts/font = ExtResource("2_q3go3")
@@ -164,20 +164,20 @@ text = "WELCOME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text_Container" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Text_Container" type="PanelContainer" parent="Main_Panel/Margins_Container/Vertical_Container" unique_id=28684765]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_imqx2")
 
-[node name="Margins_Container" type="MarginContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container"]
+[node name="Margins_Container" type="MarginContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container" unique_id=432534298]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Scroll_Container" type="ScrollContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container"]
+[node name="Scroll_Container" type="ScrollContainer" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container" unique_id=15812996]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -189,7 +189,7 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="Label" type="RichTextLabel" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container/Scroll_Container"]
+[node name="Label" type="RichTextLabel" parent="Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container/Scroll_Container" unique_id=277133923]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -203,7 +203,7 @@ theme_override_font_sizes/italics_font_size = 13
 theme_override_font_sizes/mono_font_size = 13
 bbcode_enabled = true
 text = "[center][b][font_size=22] [color=#66ccff]STEAM BUILD UPLOADER[/color][/font_size][/b][/center]
-[center][font_size=12] [color=#727272]v1.0[/color][/font_size][/center]
+[center][font_size=12] [color=#727272]v1.1[/color][/font_size][/center]
 
 Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
@@ -221,19 +221,20 @@ Your data will be saved locally in a cfg file beside wherever you have this app 
 ---
 [b][color=#66aaff]📝 Changelog[/color][/b]  
 
-This is the [b]very first build[/b]... so nothing’s changed yet. :D
+- Fixed a Bug where Description sometimes failed to upload on Steamworks Dashboard
+- Add the Description save locally when u type it in, so you don't have to type it everytime you open an App.
 
 [center][color=#888888]Thanks for testing — Feedbacks are welcome! 💙[/color][/center]
 "
 fit_content = true
 autowrap_mode = 2
 
-[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Main_Panel/Margins_Container/Vertical_Container" unique_id=810895971]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="Watch_Showcase_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+[node name="Watch_Showcase_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container" unique_id=385169433]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -247,7 +248,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_16djm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_efjnt")
 text = "SHOWCASE VIDEO"
 
-[node name="See_Doc_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+[node name="See_Doc_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container" unique_id=1299970884]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -261,7 +262,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_16djm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_efjnt")
 text = "DOCUMENTATION"
 
-[node name="Close_Dont_Show_Again_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+[node name="Close_Dont_Show_Again_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container" unique_id=1620871019]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -275,7 +276,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_v4b8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yfbgo")
 text = "DON\"T SHOW AGAIN"
 
-[node name="Close_On_Update_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container"]
+[node name="Close_On_Update_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container/Horizontal_Buttons_Container" unique_id=319845970]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -289,7 +290,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_v4b8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yfbgo")
 text = "SHOW ON EVERY UPDATE"
 
-[node name="Close_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Close_Button" type="Button" parent="Main_Panel/Margins_Container/Vertical_Container" unique_id=459522838]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2

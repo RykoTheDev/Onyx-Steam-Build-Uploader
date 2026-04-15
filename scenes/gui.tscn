@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://blx65522f750r"]
+[gd_scene format=3 uid="uid://blx65522f750r"]
 
 [ext_resource type="Theme" uid="uid://bli1rm3cml04s" path="res://resources/gui.tres" id="1_efmwq"]
 [ext_resource type="Script" uid="uid://dgvskiac7qm1n" path="res://scenes/gui.gd" id="2_7yii4"]
@@ -117,7 +117,7 @@ corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
 
-[node name="GUI_Panel" type="PanelContainer"]
+[node name="GUI_Panel" type="PanelContainer" unique_id=1748361441]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -129,39 +129,39 @@ theme = ExtResource("1_efmwq")
 theme_override_styles/panel = SubResource("StyleBoxFlat_efmwq")
 script = ExtResource("2_7yii4")
 
-[node name="Margins_Container" type="MarginContainer" parent="."]
+[node name="Margins_Container" type="MarginContainer" parent="." unique_id=726848865]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container" unique_id=1876201105]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Main_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container"]
+[node name="Main_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container" unique_id=330855825]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 590)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_66xuh")
 
-[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/Main_Panel"]
+[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/Main_Panel" unique_id=854155488]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container" unique_id=164732242]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container" unique_id=505178609]
 layout_mode = 2
 
-[node name="Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer"]
+[node name="Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer" unique_id=2141444587]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -171,7 +171,7 @@ mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton_Small"
 text = "REFRESH APPS"
 
-[node name="Donate_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer"]
+[node name="Donate_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer" unique_id=912611742]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -184,7 +184,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_p54wi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xki8e")
 text = "DONATE"
 
-[node name="Star_on_Github_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer"]
+[node name="Star_on_Github_Button" type="Button" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/HBoxContainer" unique_id=1920116863]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -197,7 +197,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_p54wi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xki8e")
 text = "STAR ON GITHUB"
 
-[node name="Scroll_Container" type="ScrollContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Scroll_Container" type="ScrollContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container" unique_id=1282955737]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -210,14 +210,14 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="Apps_List" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/Scroll_Container"]
+[node name="Apps_List" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Main_Panel/Margins_Container/Vertical_Container/Scroll_Container" unique_id=989563541]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 6
 
-[node name="No_Apps_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container"]
+[node name="No_Apps_Panel" type="PanelContainer" parent="Margins_Container/Vertical_Container" unique_id=603622163]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 590)
@@ -225,27 +225,27 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_66xuh")
 
-[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel"]
+[node name="Margins_Container" type="MarginContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel" unique_id=763940726]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container" unique_id=239471743]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="No_App_Found_Text" type="Label" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+[node name="No_App_Found_Text" type="Label" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container" unique_id=1101113630]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "No Apps Found"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="No_App_Found_Text2" type="RichTextLabel" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+[node name="No_App_Found_Text2" type="RichTextLabel" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container" unique_id=429477222]
 custom_minimum_size = Vector2(0, 48.02)
 layout_mode = 2
 theme_override_fonts/bold_font = ExtResource("4_b8iy7")
@@ -260,7 +260,7 @@ or ther might not be any VDF files in the location, Create one!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="No_Apps_Set_Directory_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+[node name="No_Apps_Set_Directory_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container" unique_id=786505910]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -271,7 +271,7 @@ theme_type_variation = &"PrimaryButton_Small"
 theme_override_font_sizes/font_size = 15
 text = "SETUP"
 
-[node name="No_Apps_Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container"]
+[node name="No_Apps_Refresh_Button" type="Button" parent="Margins_Container/Vertical_Container/No_Apps_Panel/Margins_Container/Vertical_Container" unique_id=1983901866]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
@@ -282,16 +282,16 @@ theme_type_variation = &"SecondaryButton_Small"
 theme_override_font_sizes/font_size = 15
 text = "REFRESH"
 
-[node name="Horizontal_Bottom_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container"]
+[node name="Horizontal_Bottom_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container" unique_id=1683640098]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 45
 
-[node name="Horizontal_Users_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
+[node name="Horizontal_Users_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container" unique_id=1224818374]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Manage_Users_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container"]
+[node name="Manage_Users_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container" unique_id=1757744253]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -301,19 +301,19 @@ icon = ExtResource("5_jqlde")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container" unique_id=923538621]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 
-[node name="Current_User_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container"]
+[node name="Current_User_Title" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container" unique_id=1235063709]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
 theme_override_fonts/font = ExtResource("4_b8iy7")
 text = "Current User:"
 vertical_alignment = 1
 
-[node name="Current_User_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container"]
+[node name="Current_User_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Users_Container/Vertical_Container" unique_id=1245487619]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6156863, 0.6156863, 0.6156863, 1)
@@ -322,13 +322,13 @@ theme_override_font_sizes/font_size = 12
 text = "No User Selected"
 vertical_alignment = 1
 
-[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container"]
+[node name="Horizontal_Buttons_Container" type="HBoxContainer" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container" unique_id=1041553590]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_constants/separation = 9
 
-[node name="Setup_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container"]
+[node name="Setup_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container" unique_id=1683752217]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -338,7 +338,7 @@ mouse_default_cursor_shape = 2
 theme_type_variation = &"SecondaryButton"
 text = "SETUP"
 
-[node name="Upload_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container"]
+[node name="Upload_Button" type="Button" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container" unique_id=1743306732]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -349,7 +349,7 @@ theme_type_variation = &"PrimaryButton"
 disabled = true
 text = "UPLOAD"
 
-[node name="Selected_Apps_Counter_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container/Upload_Button"]
+[node name="Selected_Apps_Counter_Text" type="Label" parent="Margins_Container/Vertical_Container/Horizontal_Bottom_Container/Horizontal_Buttons_Container/Upload_Button" unique_id=1811707731]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -367,9 +367,9 @@ theme_override_fonts/font = ExtResource("4_b8iy7")
 theme_override_font_sizes/font_size = 8
 text = "SELECTED APP: 00"
 
-[node name="AbsoluteLayer" type="CanvasLayer" parent="."]
+[node name="AbsoluteLayer" type="CanvasLayer" parent="." unique_id=1889467621]
 
-[node name="Vertical_Title_Container" type="VBoxContainer" parent="AbsoluteLayer"]
+[node name="Vertical_Title_Container" type="VBoxContainer" parent="AbsoluteLayer" unique_id=2024025007]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -386,20 +386,20 @@ size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="AbsoluteLayer/Vertical_Title_Container"]
+[node name="TextureRect" type="TextureRect" parent="AbsoluteLayer/Vertical_Title_Container" unique_id=1866454271]
 modulate = Color(1, 1, 1, 0.36078432)
 custom_minimum_size = Vector2(228.75, 82)
 layout_mode = 2
 texture = ExtResource("8_p54wi")
 expand_mode = 1
 
-[node name="PopupsLayer" type="CanvasLayer" parent="."]
+[node name="PopupsLayer" type="CanvasLayer" parent="." unique_id=917040994]
 unique_name_in_owner = true
 layer = 2
 
-[node name="Welcome_Popup" parent="PopupsLayer" instance=ExtResource("8_4yt8u")]
+[node name="Welcome_Popup" parent="PopupsLayer" unique_id=449583841 instance=ExtResource("8_4yt8u")]
 
-[node name="Console_Log_Popup" type="Control" parent="PopupsLayer"]
+[node name="Console_Log_Popup" type="Control" parent="PopupsLayer" unique_id=2078781288]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -410,7 +410,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_efmwq")
 
-[node name="Background" type="ColorRect" parent="PopupsLayer/Console_Log_Popup"]
+[node name="Background" type="ColorRect" parent="PopupsLayer/Console_Log_Popup" unique_id=1234114324]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -419,7 +419,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="Main_Panel" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup"]
+[node name="Main_Panel" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup" unique_id=917594008]
 custom_minimum_size = Vector2(700, 552)
 layout_mode = 1
 anchors_preset = 8
@@ -435,18 +435,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_epgtg")
 
-[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel"]
+[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel" unique_id=1554157392]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Vertical_Container" type="VBoxContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container"]
+[node name="Vertical_Container" type="VBoxContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container" unique_id=950786675]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="Label" type="Label" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Label" type="Label" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container" unique_id=936372632]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 theme_override_fonts/font = ExtResource("4_b8iy7")
@@ -455,20 +455,20 @@ text = "CONSOLE OUTPUT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text_Container" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Text_Container" type="PanelContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container" unique_id=1121759220]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 437)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_imqx2")
 
-[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container"]
+[node name="Margins_Container" type="MarginContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container" unique_id=232570762]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Console_Scroll_Container" type="ScrollContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container"]
+[node name="Console_Scroll_Container" type="ScrollContainer" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container" unique_id=23907169]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_scroll_mode = 0
@@ -481,7 +481,7 @@ drag_with_mouse = false
 allow_horizontal_scroll = false
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="Console_Log" type="RichTextLabel" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container/Console_Scroll_Container"]
+[node name="Console_Log" type="RichTextLabel" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container/Text_Container/Margins_Container/Console_Scroll_Container" unique_id=2000519656]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
@@ -498,7 +498,7 @@ bbcode_enabled = true
 fit_content = true
 autowrap_mode = 2
 
-[node name="Console_Close_Button" type="Button" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container"]
+[node name="Console_Close_Button" type="Button" parent="PopupsLayer/Console_Log_Popup/Main_Panel/Margins_Container/Vertical_Container" unique_id=1065185829]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2

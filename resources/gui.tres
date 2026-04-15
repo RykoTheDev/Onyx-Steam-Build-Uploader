@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=58 format=3 uid="uid://bli1rm3cml04s"]
+[gd_resource type="Theme" format=3 uid="uid://bli1rm3cml04s"]
 
 [ext_resource type="FontFile" uid="uid://cdyl48yccqq8t" path="res://assets/fonts/Rubik-BoldItalic.otf" id="1_kapja"]
 [ext_resource type="FontFile" uid="uid://b3c5y0wpjlbkv" path="res://assets/fonts/Rubik-Regular.otf" id="1_qae34"]
