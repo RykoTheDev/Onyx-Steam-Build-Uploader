@@ -96,28 +96,35 @@ expand_mode = 1
 [node name="App_ID_Container" type="VBoxContainer" parent="Margins_Container/Horizontal_Container" unique_id=22638575]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-theme_override_constants/separation = -3
 alignment = 1
 
-[node name="Label" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=1892220611]
+[node name="Build_Name_LineEdit" type="LineEdit" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=672869052]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BuildNameLineEdit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=996455183]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container/HBoxContainer" unique_id=1892220611]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
 theme_override_fonts/font = ExtResource("3_trmq1")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "APP ID"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="App_ID_Text" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container" unique_id=1332876195]
+[node name="App_ID_Text" type="Label" parent="Margins_Container/Horizontal_Container/App_ID_Container/HBoxContainer" unique_id=1332876195]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
 theme_override_fonts/font = ExtResource("4_wfrxi")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 16
 text = "12345678"
 horizontal_alignment = 1
 vertical_alignment = 1
