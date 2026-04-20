@@ -203,7 +203,7 @@ theme_override_font_sizes/italics_font_size = 13
 theme_override_font_sizes/mono_font_size = 13
 bbcode_enabled = true
 text = "[center][b][font_size=22] [color=#66ccff]STEAM BUILD UPLOADER[/color][/font_size][/b][/center]
-[center][font_size=12] [color=#727272]v1.1[/color][/font_size][/center]
+[center][font_size=12] [color=#727272]v1.2[/color][/font_size][/center]
 
 Built with love (and a bit of impatience) in Godot + GDScript.
 Thank you for trying out this app that I made in my free time...
@@ -221,8 +221,7 @@ Your data will be saved locally in a cfg file beside wherever you have this app 
 ---
 [b][color=#66aaff]📝 Changelog[/color][/b]  
 
-- Fixed a Bug where Description sometimes failed to upload on Steamworks Dashboard
-- Add the Description save locally when u type it in, so you don't have to type it everytime you open an App.
+- Add the Ability to name your Builds (Purely QoL)
 
 [center][color=#888888]Thanks for testing — Feedbacks are welcome! 💙[/color][/center]
 "

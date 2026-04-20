@@ -469,6 +469,14 @@ func _spawn_app_card(app_id: String, vdf_path: String, previously_selected: Dict
 	var depots_button: Button = card.get_node("%Depots_Button")
 	var checkbox: CustomCheckbox = card.get_node("%CheckBox")
 
+	# === Build Name ===
+	var build_name_line: LineEdit = card.get_node("%Build_Name_LineEdit")
+	if build_name_line:
+		build_name_line.text = SettingManager.get_setting("build_names", app_id, "")
+		build_name_line.text_changed.connect(func(new_text: String):
+			SettingManager.set_setting("build_names", app_id, new_text)
+		)
+
 	# === App ID ===
 	if id_text:
 		id_text.text = app_id

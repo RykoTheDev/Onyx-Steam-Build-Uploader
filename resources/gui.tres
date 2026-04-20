@@ -38,6 +38,40 @@ corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
 
+[sub_resource type="DPITexture" id="DPITexture_jgg6s"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ohbq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3t4m"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.16470589, 0.16470589, 0.16470589, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k84go"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs173"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -439,6 +473,25 @@ BrowseLineEdit/icons/clear = SubResource("DPITexture_kapja")
 BrowseLineEdit/styles/focus = SubResource("StyleBoxEmpty_ewxox")
 BrowseLineEdit/styles/normal = SubResource("StyleBoxFlat_cgj3v")
 BrowseLineEdit/styles/read_only = SubResource("StyleBoxFlat_7uhh3")
+BuildNameLineEdit/base_type = &"LineEdit"
+BuildNameLineEdit/colors/caret_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/clear_button_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/clear_button_color_pressed = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/font_outline_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/font_placeholder_color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+BuildNameLineEdit/colors/font_selected_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+BuildNameLineEdit/colors/font_uneditable_color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+BuildNameLineEdit/colors/selection_color = Color(0.16855377, 0.5457343, 0.7492446, 1)
+BuildNameLineEdit/constants/caret_width = 1
+BuildNameLineEdit/constants/minimum_character_width = 0
+BuildNameLineEdit/constants/outline_size = 0
+BuildNameLineEdit/font_sizes/font_size = 10
+BuildNameLineEdit/fonts/font = ExtResource("1_qae34")
+BuildNameLineEdit/icons/clear = SubResource("DPITexture_jgg6s")
+BuildNameLineEdit/styles/focus = SubResource("StyleBoxEmpty_ohbq5")
+BuildNameLineEdit/styles/normal = SubResource("StyleBoxFlat_r3t4m")
+BuildNameLineEdit/styles/read_only = SubResource("StyleBoxFlat_k84go")
 Checkbox/base_type = &"Button"
 Checkbox/colors/font_color = Color(0, 0, 0, 1)
 Checkbox/colors/font_disabled_color = Color(0, 0, 0, 1)
