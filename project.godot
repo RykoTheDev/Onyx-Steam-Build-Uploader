@@ -8,7 +8,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="SteamBuildUploader"
 config/version="1.2"
+<<<<<<< HEAD
 config/tags=PackedStringArray("commercial", "tool")
+=======
+config/tags=PackedStringArray("tool")
+>>>>>>> d511a74b0bd08e70ace15dcd551c86175cc4366f
 run/main_scene="uid://blx65522f750r"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0.08235294, 0.08235294, 0.08235294, 1)
